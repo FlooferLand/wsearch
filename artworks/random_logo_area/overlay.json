@@ -1,0 +1,9 @@
+{
+    "version": 1,
+    "name": "Random logo area",
+    "imageUrl": "https://github.com/FlooferLand/wplace-art/blob/main/random_logo_area/random_logo_area.png?raw=true",
+    "pixelUrl": "https://backend.wplace.live/s0/pixel/1145/727?x=465&y=128",
+    "offsetX": 0,
+    "offsetY": 0,
+    "opacity": 0.7
+}

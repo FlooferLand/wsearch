@@ -1,0 +1,12 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": ["artworks/*/metadata.json"],
+            "url": "./artworks/_schemas/metadata.json"
+        },
+        {
+            "fileMatch": ["artworks/*/overlay.json"],
+            "url": "./artworks/_schemas/overlay.json"
+        }
+    ]
+}

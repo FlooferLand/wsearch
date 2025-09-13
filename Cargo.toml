@@ -1,4 +1,4 @@
 [workspace]
-default-members = ["generator"]
-members = ["generator"]
+default-members = ["website"]
+members = ["website"]
 resolver = "3"

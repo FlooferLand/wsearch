@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="de.achimonline.quickjinja.settings.QuickJinjaProjectSettingsState">
+    <option name="settings">
+      <QuickJinjaProjectSettings>
+        <option name="templateFilePath" value="C:\Users\FlooferLand\Documents\Programming\Rust\wsearch\templates\index.askama" />
+        <option name="variables" value="users: [&quot;woaw&quot;, &quot;woapw2&quot;]" />
+      </QuickJinjaProjectSettings>
+    </option>
+  </component>
+</project>

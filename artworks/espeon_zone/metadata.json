@@ -1,0 +1,27 @@
+{
+    "name": "Espeon zone",
+    "credits": {
+        "maintainers": [
+            "FlooferLand (RO) #5674026 (@flooferland)"
+        ],
+        "artists": [
+            "# -- Cute Espeon",
+            "RoughChain #2508295",
+            "FlooferLand (RO) #5674026 (@flooferland)",
+
+            "# -- Femtanyl mask",
+            "katiserie #611739 (@katiserie)",
+
+            "# -- Sleepy creature",
+            "SleepyRing #1707250",
+
+            "# -- Parrot",
+            "alex #2108108 (@fearedandhungerisms)"
+        ]
+    },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.17550974637054&lng=21.311806309277333&zoom=16.475640118883295",
+        "top_left": { "x": 1240, "y": 3160 }
+    },
+    "png": "espeon_zone.png"
+}

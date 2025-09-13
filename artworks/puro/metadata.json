@@ -1,0 +1,17 @@
+{
+    "name": "Puro",
+    "credits": {
+        "maintainers": [
+            "Player #1000495",
+            "FlooferLand (RO) #5674026 (@flooferland)",
+            "ClarNuKriszti #7821528",
+            "qubaw #10637535 (@qubaw)"
+        ]
+    },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.16650172790631&lng=21.18735318427732&zoom=16.155257546899563",
+        "top_left": { "x": 532, "y": 3234 }
+    },
+    "tile": "https://backend.wplace.live/files/s0/tiles/1144/727.png",
+    "png": "wplace_puro.png"
+}
