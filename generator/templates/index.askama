@@ -1,0 +1,5 @@
+{% extends "base.askama" %}
+
+{% block body %}
+	<p>Meow fr</p>
+{% endblock %}

@@ -1,0 +1,4 @@
+[workspace]
+default-members = ["generator"]
+members = ["generator"]
+resolver = "3"
