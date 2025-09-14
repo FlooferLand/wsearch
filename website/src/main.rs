@@ -14,6 +14,7 @@ fn main() {
 		.insert_data(load_data())
 		.mount("$static", "/static")
 		.mount("$styles", "/static/styles")
+		.styles_dir("./website/web/static/styles")
 		.static_dir("./website/web/static")
 		.build_dir("./build")
 		.build();

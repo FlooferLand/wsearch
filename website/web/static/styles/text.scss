@@ -1,0 +1,21 @@
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 0.5rem 0;
+	color: var(--text-color);
+	user-select: none;
+}
+
+span, details {
+	user-select: none;
+}
+
+details {
+	padding: 0.5rem;
+	background-color: color-mix(in srgb, var(--background-color) 50%, transparent);
+	&:hover {
+		background-color: color-mix(in srgb, var(--background-color) 98%, transparent);
+	}
+}
+
+.selectable {
+	user-select: text;
+}

@@ -16,8 +16,17 @@
 		{%- endif -%}
     </head>
     <body>
-    	{%- block body %}
-    		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    	{% endblock -%}
+		{# Navbar #}
+		<ul id="navbar">
+			<li><p>wsearch</p></li>
+			<li><a href="/">Home</a></li>
+		</ul>
+
+		{# Body #}
+		<div id="page-body">
+			{%- block body %}
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			{% endblock -%}
+		</div>
     </body>
 </html>

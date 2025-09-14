@@ -1,0 +1,24 @@
+ul#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--background-color);
+
+    li {
+        float: left;
+
+        a, p {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 0.4rem 0.6rem;
+            text-decoration: none;
+        }
+        a {
+            &:hover {
+                background-color: var(--primary-color);
+            }
+        }
+    }
+}
