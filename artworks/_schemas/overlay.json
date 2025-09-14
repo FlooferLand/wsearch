@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OverlayPro",
+  "description": "Overlay file for Overlay Pro",
+  "type": "object",
+  "properties": {
+    "imageUrl": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "offsetX": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "offsetY": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "opacity": {
+      "type": "number",
+      "format": "float"
+    },
+    "pixelUrl": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "version",
+    "name",
+    "imageUrl",
+    "pixelUrl",
+    "offsetX",
+    "offsetY",
+    "opacity"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArtworkMetadata",
+  "type": "object",
+  "properties": {
+    "coords": {
+      "$ref": "#/$defs/ArtworkCoords"
+    },
+    "credits": {
+      "$ref": "#/$defs/ArtworkCredits"
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "png": {
+      "type": "string"
+    },
+    "tile": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "credits",
+    "coords",
+    "png"
+  ],
+  "$defs": {
+    "ArtworkCoords": {
+      "type": "object",
+      "properties": {
+        "link": {
+          "type": "string"
+        },
+        "top_left": {
+          "$ref": "#/$defs/PixelCoords"
+        }
+      },
+      "required": [
+        "link",
+        "top_left"
+      ]
+    },
+    "ArtworkCredits": {
+      "type": "object",
+      "properties": {
+        "artists": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "maintainers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "maintainers"
+      ]
+    },
+    "PixelCoords": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ]
+    }
+  }
+}

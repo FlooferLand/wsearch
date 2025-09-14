@@ -1,0 +1,23 @@
+<html lang="en">
+    <head>
+        <title>
+        	{%- block title -%}
+        		{%- if let Ok(title) = "title"|value::<&str> -%}
+					{{ title }}
+				{%- endif -%}
+			{%- endblock -%}
+        </title>
+        <link rel="stylesheet" type="text/css" href="./static/styles/main.css" />
+		{%- block head %}{% endblock -%}
+
+
+		{%- if let Ok(title) = "title"|value::<&str> -%}
+			<p style="color: white">Served!</p>
+		{%- endif -%}
+    </head>
+    <body>
+    	{%- block body %}
+    		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    	{% endblock -%}
+    </body>
+</html>
