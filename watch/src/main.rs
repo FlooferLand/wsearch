@@ -56,8 +56,8 @@ fn main() -> Result<()> {
 fn spawn() -> Child {
 	Command::new("cargo")
 		.args(["run", "--package", "website", "--bin", "website", "--", "--served"])
-		.stdout(Stdio::null())
-		.stderr(Stdio::null())
+		.stdout(Stdio::inherit())
+		.stderr(Stdio::inherit())
 		.spawn()
 		.unwrap()
 }

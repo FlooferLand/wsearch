@@ -11,8 +11,8 @@
 		<link rel="icon" type="image/png" href="$static/favicon.png" />
 
 		{%- block head %}{% endblock -%}
-		{%- if let Ok(title) = "title"|value::<&str> -%}
-			<p style="color: white">Served!</p>
+		{%- if let Ok(_) = "debug_served"|value::<bool> -%}
+			<!-- TODO: Make a refresh script to refresh on a filesystem change -->
 		{%- endif -%}
     </head>
     <body>

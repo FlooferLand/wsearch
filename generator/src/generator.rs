@@ -121,7 +121,7 @@ fn build_route<'a, Data>(
 	let mut values: HashMap<&str, Box<dyn Any>> = HashMap::new();
 	values.insert("title", Box::new("Real"));
 	if env::args().any(|a| a == "--served") {
-		values.insert("debug_served", Box::new(()));
+		values.insert("debug_served", Box::new(true));
 	}
 	let mut rendered = built.dyn_render_with_values(&values).unwrap();
 
