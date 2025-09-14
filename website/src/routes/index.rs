@@ -1,11 +1,12 @@
 use askama::{DynTemplate, Template};
 use generator::routes::Route;
 use crate::Data;
+use crate::data::Artwork;
 
-#[derive(Clone, Template)]
+#[derive(Template)]
 #[template(path = "index.askama")]
-struct IndexTemplate {
-	pub users: Vec<String>
+struct IndexTemplate<'a> {
+	pub artworks: &'a Vec<Artwork>
 }
 
 pub struct IndexRoute;
@@ -14,8 +15,8 @@ impl Route<Data> for IndexRoute {
 		IndexRoute
 	}
 
-	fn build(&self, data: &Data) -> Result<Box<dyn DynTemplate>, String> {
-		let built = IndexTemplate { users: vec!["For".to_string(), "real".to_string()] };
+	fn build<'a>(&self, data: &'a Data) -> Result<Box<dyn DynTemplate + 'a>, String> {
+		let built = IndexTemplate { artworks: &data.artworks };
 		Ok(Box::new(built))
 	}
 }

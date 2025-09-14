@@ -1,4 +1,4 @@
 [workspace]
 default-members = ["website"]
-members = ["website"]
+members = [ "watch", "website"]
 resolver = "3"

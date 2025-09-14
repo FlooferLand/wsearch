@@ -7,13 +7,13 @@ use crate::types::PixelCoords;
 #[serde(rename_all = "camelCase")]
 #[derive(Debug)]
 pub struct OverlayPro {
-	version: i32,
-	name: String,
-	image_url: String,
-	pixel_url: String,
-	offset_x: i32,
-	offset_y: i32,
-	opacity: f32
+	pub version: i32,
+	pub name: String,
+	pub image_url: String,
+	pub pixel_url: String,
+	pub offset_x: i32,
+	pub offset_y: i32,
+	pub opacity: f32
 }
 impl OverlayPro {
 	fn new(name: String, image_url: String, pixel_url: String, offset: PixelCoords) -> Self {

@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/macros/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/generator/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/website/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/watch/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

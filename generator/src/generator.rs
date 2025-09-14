@@ -1,5 +1,6 @@
 use std::any::Any;
 use std::collections::HashMap;
+use std::env;
 use std::path::{Path, PathBuf};
 use crate::routes::{BuiltRoute, Route};
 
@@ -10,7 +11,7 @@ pub struct Generator<Data> {
 	build_dir: PathBuf,
 	global_data: Option<Data>,
 }
-impl<Data: Default> Generator<Data> {
+impl<'a, Data: Default + 'a> Generator<Data> {
 	pub fn new() -> Self {
 		Generator::default()
 	}
@@ -25,12 +26,12 @@ impl<Data: Default> Generator<Data> {
 		self
 	}
 
-	pub fn data(mut self, data: Data) -> Self {
+	pub fn insert_data(mut self, data: Data) -> Self {
 		self.global_data = Some(data);
 		self
 	}
 
-	pub fn route<'a, R>(mut self, path: &'a str, title: &'a str) -> Self where R: Route<Data> + 'static {
+	pub fn route<'b, R>(mut self, path: &'b str, title: &'b str) -> Self where R: Route<Data> + 'static {
 		let built = BuiltRoute {
 			path: path.to_string(),
 			title: title.to_string(),
@@ -70,7 +71,7 @@ impl<Data: Default> Generator<Data> {
 	}
 }
 
-fn build_route<Data>(build_dir: &Path, data: &Data, route: &BuiltRoute<Data>) -> Result<(), String> {
+fn build_route<'a, Data>(build_dir: &Path, data: &'a Data, route: &BuiltRoute<Data>) -> Result<(), String> {
 	// Building
 	let built = match route.inner.build(data) {
 		Ok(value) => value,
@@ -80,6 +81,9 @@ fn build_route<Data>(build_dir: &Path, data: &Data, route: &BuiltRoute<Data>) ->
 	// Rendering
 	let mut values: HashMap<&str, Box<dyn Any>> = HashMap::new();
 	values.insert("title", Box::new("Real"));
+	if env::args().any(|a| a == "--served") {
+		values.insert("debug_served", Box::new(()));
+	}
 	let rendered = built.dyn_render_with_values(&values).unwrap();
 
 	// Sanitizing the file path

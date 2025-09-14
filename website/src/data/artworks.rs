@@ -3,31 +3,32 @@ use jsonschema::Validator;
 use schemars::{schema_for, JsonSchema};
 use schemars::_private::NoSerialize;
 use serde::{Deserialize, Serialize};
+use crate::data::Artwork;
 use crate::overlay::OverlayPro;
 use crate::types::PixelCoords;
 
 // Main schema
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[schemars(rename_all = "snake_case", deny_unknown_fields)]
-pub struct Artwork {
-	name: String,
-	credits: ArtworkCredits,
-	coords: ArtworkCoords,
-	tile: Option<String>,
-	png: String,
-	license: Option<String>
+pub struct ArtworkMetadata {
+	pub name: String,
+	pub credits: ArtworkCredits,
+	pub coords: ArtworkCoords,
+	pub tile: Option<String>,
+	pub png: String,
+	pub license: Option<String>
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
 struct ArtworkCredits {
-	maintainers: Vec<String>,
-	artists: Option<Vec<String>>
+	pub maintainers: Vec<String>,
+	pub artists: Option<Vec<String>>
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
 struct ArtworkCoords {
-	link: String,
-	top_left: PixelCoords
+	pub link: String,
+	pub top_left: PixelCoords
 }
 
 macro_rules! read_json_with_schema {
@@ -45,7 +46,7 @@ macro_rules! read_json_with_schema {
 /// Generating JSON schema and loading in the artworks
 pub fn load_artworks() -> Vec<Artwork> {
 	// Generating metadata schema
-	let metadata_schema = schema_for!(Artwork);
+	let metadata_schema = schema_for!(ArtworkMetadata);
 	let _ = std::fs::write(
 		"./artworks/_schemas/metadata.json",
 		serde_json::to_string_pretty(&metadata_schema).unwrap()
@@ -63,7 +64,7 @@ pub fn load_artworks() -> Vec<Artwork> {
 	let overlay_validator = jsonschema::validator_for(&overlay_schema.as_value()).unwrap();
 
 	// Loading in the artworks
-	let artworks: Vec<Artwork> = Vec::new();
+	let mut artworks: Vec<Artwork> = Vec::new();
 	for dir in std::fs::read_dir("./artworks").expect("Artworks dir didn't exist") {
 		let Ok(dir) = dir else { continue };
 		let Ok(kind) = dir.file_type() else { continue };
@@ -74,19 +75,21 @@ pub fn load_artworks() -> Vec<Artwork> {
 
 		// Reading metadata
 		let metadata_path = dir.path().join("metadata.json");
-		let metadata = read_json_with_schema!(Artwork, &metadata_path, &metadata_validator);
+		let metadata = read_json_with_schema!(ArtworkMetadata, &metadata_path, &metadata_validator);
 		if !std::fs::exists(&metadata_path).unwrap_or(false) {
 			eprintln!("Metadata file at path '{}' does not exist.", &metadata_path.display());
-			continue;
+			continue;  // Skipping if there is no metadata file since its required
 		}
-		println!("{:#?}\n", &metadata);
 
 		// Reading the overlay
 		let overlay_path = dir.path().join("overlay.json");
+		let mut overlay = None;
 		if std::fs::exists(&overlay_path).unwrap_or(false) {
-			let overlay = read_json_with_schema!(OverlayPro, &overlay_path, &overlay_validator);
-			println!("{:#?}\n", &overlay);
+			overlay = Some(read_json_with_schema!(OverlayPro, &overlay_path, &overlay_validator));
 		}
+		
+		// Adding the new artwork
+		artworks.push(Artwork { metadata, overlay });
 	}
 	artworks
 }

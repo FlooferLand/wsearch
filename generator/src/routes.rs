@@ -8,5 +8,5 @@ pub struct BuiltRoute<Data> {
 
 pub trait Route<Data> {
 	fn construct() -> Self where Self: Sized;
-	fn build(&self, data: &Data) -> Result<Box<dyn DynTemplate>, String>;
+	fn build<'a>(&self, data: &'a Data) -> Result<Box<dyn DynTemplate + 'a>, String>;
 }
