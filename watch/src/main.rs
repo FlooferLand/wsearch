@@ -12,10 +12,10 @@ fn main() -> Result<()> {
 
 	// Watching the built out files
 	Command::new("live-server")
-			.args(["./build"])
-			.stdout(Stdio::inherit())
-			.stderr(Stdio::inherit())
-			.spawn()?;
+		.args(["./build"])
+		.stdout(Stdio::inherit())
+		.stderr(Stdio::inherit())
+		.spawn()?;
 
 	// Watching the source files and rebuilding
 	let mut time = Utc::now();

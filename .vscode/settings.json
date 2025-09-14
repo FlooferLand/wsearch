@@ -8,5 +8,8 @@
             "fileMatch": ["artworks/*/overlay.json"],
             "url": "./artworks/_schemas/overlay.json"
         }
-    ]
+    ],
+    "files.associations": {
+        "*.askama": "nunjucks"
+    }
 }

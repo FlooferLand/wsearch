@@ -7,9 +7,8 @@
 				{%- endif -%}
 			{%- endblock -%}
         </title>
-        <link rel="stylesheet" type="text/css" href="./static/styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="$static/styles/main.scss" />
 		{%- block head %}{% endblock -%}
-
 
 		{%- if let Ok(title) = "title"|value::<&str> -%}
 			<p style="color: white">Served!</p>

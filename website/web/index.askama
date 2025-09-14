@@ -4,5 +4,4 @@
 	{% for artwork in artworks %}
 		<p>{{ artwork.metadata.name }}</p>
 	{% endfor %}
-	<p>Meowth.. MEOW</p>
 {% endblock %}

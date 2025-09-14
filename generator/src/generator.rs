@@ -1,6 +1,6 @@
 use std::any::Any;
 use std::collections::HashMap;
-use std::env;
+use std::{env, io};
 use std::path::{Path, PathBuf};
 use crate::routes::{BuiltRoute, Route};
 
@@ -52,10 +52,7 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 		}
 
 		// Copying over static dir
-		let copy_res = dircpy::CopyBuilder::new(&self.static_dir, &target_static_dir)
-			.overwrite_if_newer(true)
-			.overwrite_if_size_differs(true)
-			.run();
+		let copy_res = process_and_copy(&self.static_dir, &target_static_dir);
 		if let Err(err) = copy_res {
 			eprintln!("Failed to copy over static dir '{}' to '{}': {err}", &self.static_dir.display(), &target_static_dir.display());
 		}
@@ -71,6 +68,37 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 	}
 }
 
+/// Recursive function to copy everything from the source folders into the build folder.
+/// Also processing any files (ex: scss -> css) whenever found.
+fn process_and_copy(src: &Path, dst: &Path) -> io::Result<()> {
+	if src.is_dir() {
+		std::fs::create_dir_all(dst)?;
+		for entry in std::fs::read_dir(src)? {
+			let entry = entry?;
+			let src_path = entry.path();
+			let dst_path = dst.join(entry.file_name());
+			process_and_copy(&src_path, &dst_path)?;
+		}
+	} else if let Some(ext) = src.extension().and_then(|e| e.to_str()) {
+		// Processing and copying over files
+		match ext {
+			"scss" | "sass" => {
+				let code = std::fs::read_to_string(src)?;
+				let scss = {
+					let options = grass::Options::default();
+					grass::from_string(code, &options).unwrap()
+				};
+				std::fs::write(dst.with_extension("css"), scss)?;
+			}
+			&_ => {
+				std::fs::copy(src, dst)?;
+			}
+		}
+	}
+	Ok(())
+}
+
+/// Builds and renders a route, then writes it to a file
 fn build_route<'a, Data>(build_dir: &Path, data: &'a Data, route: &BuiltRoute<Data>) -> Result<(), String> {
 	// Building
 	let built = match route.inner.build(data) {
