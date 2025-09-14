@@ -7,9 +7,10 @@
 				{%- endif -%}
 			{%- endblock -%}
         </title>
-        <link rel="stylesheet" type="text/css" href="$static/styles/main.scss" />
-		{%- block head %}{% endblock -%}
+        <link rel="stylesheet" type="text/css" href="$styles/main.scss" />
+		<link rel="icon" type="image/png" href="$static/favicon.png" />
 
+		{%- block head %}{% endblock -%}
 		{%- if let Ok(title) = "title"|value::<&str> -%}
 			<p style="color: white">Served!</p>
 		{%- endif -%}

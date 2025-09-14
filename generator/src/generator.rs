@@ -7,6 +7,7 @@ use crate::routes::{BuiltRoute, Route};
 #[derive(Default)]
 pub struct Generator<Data> {
 	routes: Vec<BuiltRoute<Data>>,
+	path_mounts: Vec<(String, String)>,
 	static_dir: PathBuf,
 	build_dir: PathBuf,
 	global_data: Option<Data>,
@@ -23,6 +24,11 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 
 	pub fn build_dir(mut self, dir: &str) -> Self {
 		self.build_dir = PathBuf::from(dir.to_owned());
+		self
+	}
+
+	pub fn mount(mut self, keyword: &str, url: &str) -> Self {
+		self.path_mounts.push((keyword.to_string(), url.to_string()));
 		self
 	}
 
@@ -60,7 +66,7 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 		// Building all the routes
 		let data = self.global_data.unwrap();
 		for route in self.routes {
-			if let Err(err) = build_route::<Data>(&self.build_dir, &data, &route) {
+			if let Err(err) = build_route::<Data>(&self.build_dir, &data, &route, &self.path_mounts) {
 				eprintln!("Error building route '{}':\n  - {}", &route.path, err);
 				continue;
 			}
@@ -99,7 +105,12 @@ fn process_and_copy(src: &Path, dst: &Path) -> io::Result<()> {
 }
 
 /// Builds and renders a route, then writes it to a file
-fn build_route<'a, Data>(build_dir: &Path, data: &'a Data, route: &BuiltRoute<Data>) -> Result<(), String> {
+fn build_route<'a, Data>(
+	build_dir: &Path, 
+	data: &'a Data, 
+	route: &BuiltRoute<Data>, 
+	path_mounts: &Vec<(String, String)>
+) -> Result<(), String> {
 	// Building
 	let built = match route.inner.build(data) {
 		Ok(value) => value,
@@ -112,7 +123,30 @@ fn build_route<'a, Data>(build_dir: &Path, data: &'a Data, route: &BuiltRoute<Da
 	if env::args().any(|a| a == "--served") {
 		values.insert("debug_served", Box::new(()));
 	}
-	let rendered = built.dyn_render_with_values(&values).unwrap();
+	let mut rendered = built.dyn_render_with_values(&values).unwrap();
+
+	// Replacing paths inside render
+	for (local, external) in path_mounts {
+		let local = if local.chars().nth(0).unwrap() == '$' { &format!("${}", &local[1..]) } else { local };
+		let Some(start) = rendered.find(local) else { continue };
+		let Some(end) = rendered[start..].find('"').map(|e| start + e) else { continue };
+		
+		// Getting the string
+		let path = external.to_owned() + &rendered[start+local.len()..end].to_owned();
+		let mut path = PathBuf::from(path);
+
+		// Replacing extensions
+		if let Some(ext) = path.extension() {
+			let ext = ext.to_string_lossy().to_string();
+			match ext.as_str() {
+				"scss" | "sass" => path = path.with_extension("css"),
+				_ => {}
+			}
+		}
+
+		rendered.replace_range(start..end, &path.display().to_string());
+	}
+	println!("{}\n", rendered);
 
 	// Sanitizing the file path
 	let cleaned_route = {

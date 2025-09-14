@@ -12,6 +12,8 @@ fn main() {
 	Generator::new()
 		.route::<IndexRoute>("/", "Home")
 		.insert_data(load_data())
+		.mount("$static", "/static")
+		.mount("$styles", "/static/styles")
 		.static_dir("./website/web/static")
 		.build_dir("./build")
 		.build();
