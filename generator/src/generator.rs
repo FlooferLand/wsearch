@@ -146,7 +146,6 @@ fn build_route<'a, Data>(
 
 		rendered.replace_range(start..end, &path.display().to_string());
 	}
-	println!("{}\n", rendered);
 
 	// Sanitizing the file path
 	let cleaned_route = {

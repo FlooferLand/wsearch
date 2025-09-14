@@ -24,7 +24,3 @@ fn load_data() -> Data {
 		artworks: load_artworks()
 	}
 }
-
-pub fn path(path: &str) -> String {
-    format!("REAL {}", path)
-}
