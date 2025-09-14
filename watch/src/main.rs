@@ -11,8 +11,12 @@ fn main() -> Result<()> {
 	watcher.watch(Path::new("./website"), RecursiveMode::Recursive)?;
 
 	// Watching the built out files
+	let mut args = vec!["./build"];
+	if !std::env::args().any(|a| a == "--open-browser") {
+		args.push("--no-browser");
+	}
 	Command::new("live-server")
-		.args(["./build"])
+		.args(args)
 		.stdout(Stdio::inherit())
 		.stderr(Stdio::inherit())
 		.spawn()?;
