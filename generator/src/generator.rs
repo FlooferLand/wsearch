@@ -135,23 +135,25 @@ fn build_route<'a, Data>(
 	// Replacing paths inside render
 	for (local, external) in path_mounts {
 		let local = if local.chars().nth(0).unwrap() == '$' { &format!("${}", &local[1..]) } else { local };
-		let Some(start) = rendered.find(local) else { continue };
-		let Some(end) = rendered[start..].find('"').map(|e| start + e) else { continue };
-		
-		// Getting the string
-		let path = external.to_owned() + &rendered[start+local.len()..end].to_owned();
-		let mut path = PathBuf::from(path);
+		let offset = 0;
+		while let Some(start) = rendered[offset..].find(local) {
+			let Some(end) = rendered[start..].find('"').map(|e| start + e) else { continue };
+			
+			// Getting the string
+			let path = external.to_owned() + &rendered[start+local.len()..end].to_owned();
+			let mut path = PathBuf::from(path);
 
-		// Replacing extensions
-		if let Some(ext) = path.extension() {
-			let ext = ext.to_string_lossy().to_string();
-			match ext.as_str() {
-				"scss" | "sass" => path = path.with_extension("css"),
-				_ => {}
+			// Replacing extensions
+			if let Some(ext) = path.extension() {
+				let ext = ext.to_string_lossy().to_string();
+				match ext.as_str() {
+					"scss" | "sass" => path = path.with_extension("css"),
+					_ => {}
+				}
 			}
-		}
 
-		rendered.replace_range(start..end, &path.display().to_string());
+			rendered.replace_range(start..end, &path.display().to_string());
+		}
 	}
 
 	// Sanitizing the file path
