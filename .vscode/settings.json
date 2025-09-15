@@ -11,5 +11,8 @@
     ],
     "files.associations": {
         "*.askama": "html"
-    }
+    },
+    "cSpell.words": [
+        "wsearch"
+    ]
 }

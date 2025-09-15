@@ -1,5 +1,7 @@
 <html lang="en">
     <head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
         	{%- block title -%}
         		{%- if let Ok(title) = "title"|value::<&str> -%}
@@ -10,23 +12,28 @@
         <link rel="stylesheet" type="text/css" href="$styles/main.scss" />
 		<link rel="icon" type="image/png" href="$static/favicon.png" />
 
+		<script src="$scripts/base.ts"></script>
+
 		{%- block head %}{% endblock -%}
 		{%- if let Ok(_) = "debug_served"|value::<bool> -%}
 			<!-- TODO: Make a refresh script to refresh on a filesystem change -->
-		{%- endif -%}
+		{%- endif %}
     </head>
     <body>
-		{# Navbar #}
+		{#- Navbar #}
 		<ul id="navbar">
-			<li><p>wsearch</p></li>
-			<li><a href="/">Home</a></li>
+			<li><img id="logo" src="$static/favicon.png" width="32px" /></li>
+			<li><span id="logo-text">wsearch</span></li>
+			<li><a href="/">home</a></li>
+			<br/>
+			<button id="switch-theme">Real</button>
 		</ul>
 
-		{# Body #}
+		{#- Body #}
 		<div id="page-body">
-			{%- block body %}
+			{% block body %}
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			{% endblock -%}
+			{% endblock %}
 		</div>
     </body>
 </html>

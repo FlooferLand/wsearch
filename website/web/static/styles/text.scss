@@ -4,6 +4,15 @@ p, h1, h2, h3, h4, h5, h6 {
 	user-select: none;
 }
 
+small {
+	opacity: 60%;
+}
+
+img {
+	-webkit-user-drag: none;
+	user-select: none;
+}
+
 span, details {
 	user-select: none;
 }
@@ -14,6 +23,10 @@ details {
 	&:hover {
 		background-color: color-mix(in srgb, var(--background-color) 98%, transparent);
 	}
+}
+
+.website-name {
+	color: color-mix(in srgb, var(--primary-color) 60%, white);
 }
 
 .selectable {

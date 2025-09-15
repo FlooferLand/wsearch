@@ -1,7 +1,12 @@
 {% extends "base.askama" %}
 
 {% block body %}
-	{% for artwork in artworks %}
-		<p>{{ artwork.metadata.name }}</p>
-	{% endfor %}
+	<p>Welcome to <span class="website-name">wsearch</span>!</p>
+	<p>The wplace search engine.</p>
+	<p><i><small>(Not officially affiliated with wplace)</small></i></p>
+	<br/>
+
+	{%- for artwork in artworks %}
+	<p>{{ artwork.metadata.name }}</p>
+	{%- endfor -%}
 {% endblock %}

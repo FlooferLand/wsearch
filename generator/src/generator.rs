@@ -2,6 +2,7 @@ use std::any::Any;
 use std::collections::HashMap;
 use std::{env, io};
 use std::path::{Path, PathBuf};
+
 use crate::routes::{BuiltRoute, Route};
 
 #[derive(Default)]
@@ -103,6 +104,7 @@ fn process_and_copy<Data>(src: &Path, dst: &Path, generator: &Generator<Data>) -
 				};
 				std::fs::write(dst.with_extension("css"), scss)?;
 			}
+			// TODO: Add typescript transformation
 			&_ => {
 				std::fs::copy(src, dst)?;
 			}
@@ -148,6 +150,7 @@ fn build_route<'a, Data>(
 				let ext = ext.to_string_lossy().to_string();
 				match ext.as_str() {
 					"scss" | "sass" => path = path.with_extension("css"),
+					"ts" => path = path.with_extension("js"),
 					_ => {}
 				}
 			}
