@@ -3,6 +3,7 @@
     "credits": {
         "maintainers": ["FlooferLand (RO) #5674026 (@flooferland)"]
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.17940464877223&lng=21.35135709052734&zoom=16.15752932759413",
         "top_left": [1465, 3128]

@@ -7,6 +7,7 @@
             "[MOD] unknown #1259659"
         ]
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.167597376524945&lng=21.174521153027314&zoom=15.735728330724765",
         "top_left": [459, 3225]

@@ -5,6 +5,7 @@
             "FlooferLand (RO) #5674026 (@flooferland)"
         ]
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.15797927147476&lng=21.310751621777335&zoom=16.160261726341798",
         "top_left": [1234, 3304]

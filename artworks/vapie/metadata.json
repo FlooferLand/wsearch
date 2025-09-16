@@ -5,6 +5,7 @@
         "artists": ["FlooferLand (RO)#5674026"],
         "additional": "Original design by Nintendo"
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.25493547444774&lng=21.381064121777342&zoom=16.613004883837274",
         "top_left": [1634, 2507]

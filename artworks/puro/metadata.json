@@ -8,6 +8,7 @@
             "qubaw #10637535 (@qubaw)"
         ]
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.16650172790631&lng=21.18735318427732&zoom=16.155257546899563",
         "top_left": [532, 3234]

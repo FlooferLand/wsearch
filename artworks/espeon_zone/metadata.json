@@ -19,6 +19,7 @@
             "alex #2108108 (@fearedandhungerisms)"
         ]
     },
+    "region": { "country": "ro", "state": "Arad" },
     "coords": {
         "link": "https://wplace.live/?lat=46.17575318585317&lng=21.311454746777333&zoom=16.76441707190538",
         "top_left": [1238, 3158]

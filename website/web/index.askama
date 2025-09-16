@@ -10,7 +10,13 @@
 		<p>Indexed:</p>
 		<ol>
 			{%- for artwork in artworks %}
-				<li><a href="/art/{{ artwork.slug }}">{{ artwork.metadata.name }}</a></li>
+				<li>
+					<a href="/art/{{ artwork.slug }}">
+						{%- let code = artwork.metadata.region.country.code() %}
+						<img src="https://flagcdn.com/w320/{{ code }}.png" alt="({{ code }})" width="18px" />
+						{{ artwork.metadata.name }}
+					</a>
+				</li>
 			{%- endfor -%}
 		</ol>
 	</label>

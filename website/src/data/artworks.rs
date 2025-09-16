@@ -2,7 +2,7 @@ use std::path::PathBuf;
 use jsonschema::Validator;
 use schemars::{schema_for, JsonSchema};
 use serde::{Deserialize, Serialize};
-use crate::data::Artwork;
+use crate::{data::Artwork, types::geo_region::GeographicalRegion};
 use crate::overlay::OverlayPro;
 use crate::types::coords::PixelCoords;
 
@@ -14,7 +14,8 @@ pub struct ArtworkMetadata {
 	pub credits: ArtworkCredits,
 	pub coords: ArtworkGlobalCoords,
 	pub image: ArtworkImage,
-	pub license: Option<String>
+	pub license: Option<String>,
+	pub region: GeographicalRegion
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]

@@ -20,6 +20,9 @@
     },
     "name": {
       "type": "string"
+    },
+    "region": {
+      "$ref": "#/$defs/GeographicalRegion"
     }
   },
   "additionalProperties": false,
@@ -27,7 +30,8 @@
     "name",
     "credits",
     "coords",
-    "image"
+    "image",
+    "region"
   ],
   "$defs": {
     "ArtworkCredits": {
@@ -85,6 +89,21 @@
         "tile",
         "coords",
         "png"
+      ]
+    },
+    "GeographicalRegion": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "country",
+        "state"
       ]
     },
     "PixelCoords": {
