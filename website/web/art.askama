@@ -14,16 +14,16 @@
 			<pre>Original drawing</pre>
 		</div>
 		<div class="child">
+			<p>Live <i>(Clipped)</i>:</p>
+			<img id="wplace-clipped-preview" height="300px" style="image-rendering: pixelated" />
+			<canvas id="wplace-clipped-preview-canvas" style="display: none"></canvas>
+			<pre>Live, unrelated pixels removed</pre>
+		</div>
+		<div class="child">
 			<p>Live:</p>
 			<img id="wplace-live-preview" height="300px" style="image-rendering: pixelated" />
 			<canvas id="wplace-live-preview-canvas" style="display: none"></canvas>
 			<pre>Live from wplace</pre>
-		</div>
-		<div class="child">
-			<p>Live <i>(Clipped)</i>:</p>
-			<img id="wplace-clipped-preview" height="300px" style="image-rendering: pixelated" />
-			<canvas id="wplace-clipped-preview-canvas" style="display: none"></canvas>
-			<pre>Live + Unrelated pixels removed</pre>
 		</div>
 	</div>
 	<br />
