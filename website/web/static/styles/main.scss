@@ -41,3 +41,14 @@ ol, ul {
 	background-color: color-mix(in srgb, var(--background-color) 55%, light-dark(white, black));
 	overflow: hidden;
 }
+
+footer {
+	padding: 0.5rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
+	p {
+		opacity: 50%;
+	}
+}
