@@ -11,11 +11,16 @@ fn main() -> Result<()> {
 	watcher.watch(Path::new("./website"), RecursiveMode::Recursive)?;
 
 	// Watching the built out files
-	let mut args = vec!["./build"];
-	if !std::env::args().any(|a| a == "--open-browser") {
-		args.push("--no-browser");
+	let args = vec![
+		"--index", "index.html",
+		"--port", "8080",
+		"--pretty-urls",
+		"./build",
+	];
+	if std::env::args().any(|a| a == "--open-browser") {
+		let _ = open::that("http://127.0.0.1:8080");
 	}
-	Command::new("live-server")
+	Command::new("miniserve")
 		.args(args)
 		.stdout(Stdio::inherit())
 		.stderr(Stdio::inherit())

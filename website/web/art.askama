@@ -2,5 +2,5 @@
 
 {% block body %}
 	<p>{{ artwork.metadata.name }}</p>
-	<img src="/data/{{ artwork.slug }}/{{ artwork.metadata.png }}.png" height="300px" style="image-rendering: pixelated" />
+	<img src="/data/{{ artwork.slug }}/{{ artwork.metadata.png }}" height="300px" style="image-rendering: pixelated" />
 {% endblock %}

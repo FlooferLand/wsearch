@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 notify = "8"
 chrono = "0.4"
+open = "5"
