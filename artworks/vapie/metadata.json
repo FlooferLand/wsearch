@@ -6,12 +6,12 @@
         "additional": "Original design by Nintendo"
     },
     "coords": {
-        "link": "https://wplace.live/?lat=46.25481393022208&lng=21.381064121777342&zoom=15.922665954153272",
-        "top_left": [1634, 2508]
+        "link": "https://wplace.live/?lat=46.25493547444774&lng=21.381064121777342&zoom=16.613004883837274",
+        "top_left": [1634, 2507]
     },
     "image": {
         "tile": [1145, 726],
-        "coords": [634, 508],
+        "coords": [634, 507],
         "png": "wplace_vapie.png"
     },
     "license": "CC-BY-4.0"
