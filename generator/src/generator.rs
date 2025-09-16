@@ -9,6 +9,7 @@ use crate::routes::{BuiltProceduralRoute, BuiltRoute, BuiltStructuredRoute, Proc
 pub struct Generator<Data> {
 	routes: Vec<BuiltRoute<Data>>,
 	path_mounts: Vec<(String, String)>,
+	touchups: Vec<fn(&Data)>,
 	static_dir: PathBuf,
 	styles_dir: PathBuf,
 	build_dir: PathBuf,
@@ -42,6 +43,11 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 
 	pub fn mount(mut self, keyword: &str, url: &str) -> Self {
 		self.path_mounts.push((keyword.to_string(), url.to_string()));
+		self
+	}
+
+	pub fn touchup(mut self, func: fn(&Data)) -> Self {
+		self.touchups.push(func);
 		self
 	}
 
@@ -124,6 +130,11 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 					}
 				},
 			};
+		}
+
+		// Calling all the touchup functions to add more thingies
+		for touchup in self.touchups {
+			touchup(&data);
 		}
 	}
 }

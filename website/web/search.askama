@@ -1,0 +1,11 @@
+{% extends "base.askama" %}
+
+{% block body %}
+	<p>Searched for '<span class="search-term"></span>'..</p>
+
+	<div class="panel">
+        <ol id="search-results"></ol>
+	</div>
+
+	<script src="$scripts/search.js" defer></script>
+{% endblock %}

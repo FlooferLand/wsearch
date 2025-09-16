@@ -10,7 +10,7 @@ ul#navbar {
         float: left;
         height: 32pt;
 
-        a, #logo-text, #logo, #theme-picker {
+        a, #logo-text, #logo, #theme-picker, #search-box {
             display: block;
             color: white;
             text-align: center;
@@ -25,7 +25,7 @@ ul#navbar {
                 border: 2px solid color-mix(in srgb, var(--primary-color) 90%, light-dark(white, black));
             }
         }
-        #logo, #theme-picker {
+        #logo, #theme-picker, #search-box {
             align-items: center;
             align-self: center;
             text-align: center;
@@ -34,6 +34,9 @@ ul#navbar {
             color: var(--primary-color);
         }
         #theme-picker {
+            height: 31pt;
+        }
+        #search-box {
             height: 31pt;
         }
     }

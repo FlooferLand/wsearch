@@ -65,6 +65,11 @@
 				<option value="light">Theme: Light</option>
 			</select></li>
 			<li><p style="color: orangered" id="theme-notice"></p></li>
+			<li>
+				<form action="/search" method="get">
+					<input id="search-box" name="q" type="text" placeholder="Search here!" required />
+				</form>
+			</li>
 		</ul>
 
 		{#- Body #}
