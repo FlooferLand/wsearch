@@ -23,7 +23,7 @@
 			<p>Live <i>(Clipped)</i>:</p>
 			<img id="wplace-clipped-preview" height="300px" style="image-rendering: pixelated" />
 			<canvas id="wplace-clipped-preview-canvas" style="display: none"></canvas>
-			<pre>Unrelated pixels removed</pre>
+			<pre>Live + Unrelated pixels removed</pre>
 		</div>
 	</div>
 	<br />

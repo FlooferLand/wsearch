@@ -2,17 +2,16 @@
 
 #preview-container {
     display: flex;
-    width: max-content;
-    height: max-content;
-    justify-content: center;
     align-items: flex-start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding-top: 0.8rem;
     gap: 8pt;
 
     .child {
         border: 3pt solid #0005;
-        flex: 1;
         overflow: hidden;
-        white-space: wrap;
+        white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
         padding: 0.8rem;
@@ -27,8 +26,8 @@
             margin: 0;
             font-size: 80%;
             white-space: wrap;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            word-wrap: break-all;
+            overflow-wrap: anywhere;
             max-width: 80%;
         }
     }
