@@ -68,7 +68,8 @@
 			const copyButton = document.getElementById("copy-overlay-pro");
 			const overlayProCode = document.getElementById("overlay-pro-code");
 			copyButton.addEventListener("click", function(e) {
-				navigator.clipboard.writeText(overlayProCode.textContent);
+				const mini = JSON.stringify(JSON.parse(overlayProCode.textContent), null, 0);
+				navigator.clipboard.writeText(mini);
 			});
 		</script>
 		<noscript><style>
