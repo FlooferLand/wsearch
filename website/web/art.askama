@@ -56,7 +56,12 @@
 
 	{#- Other #}
 	<h2>Coords</h2>
+	{%- let region = artwork.metadata.region %}
 	<p>Top left: <a href="{{ metadata.coords.link }}">{{ metadata.coords.top_left }}</a></p>
+	<p>
+		Region: {{ region.state }}, {{ region.country.to_string().to_uppercase() }}
+		<img src="https://flagcdn.com/w320/{{ region.country.code() }}.png" alt="({{ region.country.code() }})" width="24px" />
+	</p>
 
 	{#- Overlay Pro #}
 	{% let overlay = artwork.overlay %}
