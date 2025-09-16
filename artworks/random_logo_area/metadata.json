@@ -5,8 +5,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.17940464877223&lng=21.35135709052734&zoom=16.15752932759413",
-        "top_left": { "x": 1465, "y": 3128 }
+        "top_left": [1465, 3128]
     },
-    "tile": "https://backend.wplace.live/files/s0/tiles/1145/727.png",
-    "png": "random_logo_area.png"
+    "image": {
+        "tile": [1145, 727],
+        "coords": [465, 128],
+        "png": "random_logo_area.png"
+    }
 }

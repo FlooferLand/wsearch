@@ -21,7 +21,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.17550974637054&lng=21.311806309277333&zoom=16.475640118883295",
-        "top_left": { "x": 1240, "y": 3160 }
+        "top_left": [1240, 3160]
     },
-    "png": "espeon_zone.png"
+    "image": {
+        "tile": [1145, 727],
+        "coords": [240, 160],
+        "png": "espeon_zone.png"
+    }
 }

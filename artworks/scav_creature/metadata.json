@@ -10,7 +10,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.17830923535645&lng=21.372275059277328&zoom=16.207932134442082",
-        "top_left": { "x": 1584, "y": 3137 }
+        "top_left": [1584, 3137]
     },
-    "png": "scav_creature.png"
+    "image": {
+        "tile": [1145, 727],
+        "coords": [584, 137],
+        "png": "scav_creature.png"
+    }
 }

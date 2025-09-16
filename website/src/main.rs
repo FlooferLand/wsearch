@@ -3,9 +3,9 @@ mod data;
 mod overlay;
 mod types;
 
-use std::collections::HashMap;
+use std::{collections::HashMap, path::PathBuf};
 
-use crate::{data::{artworks::load_artworks, Artwork}, routes::{arts::ArtsRoute, search::SearchRoute}};
+use crate::{data::artworks::load_artworks, routes::{arts::ArtsRoute, search::SearchRoute}};
 use crate::data::Data;
 use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
@@ -24,6 +24,7 @@ fn main() {
 		.static_dir("./website/web/static")
 		.data_dir("./artworks")
 		.build_dir("./build")
+		.touchup(make_overlay_data)
 		.touchup(make_search_data)
 		.build();
 }
@@ -35,7 +36,15 @@ fn load_data() -> Data {
 }
 
 // TODO: Move this to an "emit side-effect" type system, that automatically writes the fiels to disk into the build folder.
-fn make_search_data(data: &Data) {
+fn make_overlay_data(build_dir: &PathBuf, data: &Data) {
+	for artwork in &data.artworks {
+		let out = serde_json::to_string_pretty(&artwork.overlay).unwrap();
+		std::fs::write(build_dir.join(format!("static/data/{}/overlay.json", &artwork.slug)), out).unwrap();
+	}
+}
+
+// TODO: Move this to an "emit side-effect" type system, that automatically writes the fiels to disk into the build folder.
+fn make_search_data(build_dir: &PathBuf, data: &Data) {
 	let mut search_map = HashMap::with_capacity(data.artworks.len());
 
 	for artwork in &data.artworks {
@@ -53,5 +62,5 @@ fn make_search_data(data: &Data) {
 	// Serializing to JSON
 	#[cfg(debug_assertions)] let out = serde_json::to_string_pretty(&search_map).unwrap();
 	#[cfg(not(debug_assertions))] let out = serde_json::to_string(&search_map).unwrap();
-	std::fs::write("./build/static/data/search.json", out).unwrap();
+	std::fs::write(build_dir.join("static/data/search.json"), out).unwrap();
 }

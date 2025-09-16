@@ -9,8 +9,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.167597376524945&lng=21.174521153027314&zoom=15.735728330724765",
-        "top_left": { "x": 459, "y": 3225 }
+        "top_left": [459, 3225]
     },
-    "tile": "https://backend.wplace.live/files/s0/tiles/1144/727.png",
-    "png": "mankisser.png"
+    "image": {
+        "tile": [1144, 727],
+        "coords": [459, 225],
+        "png": "mankisser.png"
+    }
 }

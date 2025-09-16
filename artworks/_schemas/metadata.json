@@ -4,10 +4,13 @@
   "type": "object",
   "properties": {
     "coords": {
-      "$ref": "#/$defs/ArtworkCoords"
+      "$ref": "#/$defs/ArtworkGlobalCoords"
     },
     "credits": {
       "$ref": "#/$defs/ArtworkCredits"
+    },
+    "image": {
+      "$ref": "#/$defs/ArtworkImage"
     },
     "license": {
       "type": [
@@ -17,15 +20,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "png": {
-      "type": "string"
-    },
-    "tile": {
-      "type": [
-        "string",
-        "null"
-      ]
     }
   },
   "additionalProperties": false,
@@ -33,24 +27,9 @@
     "name",
     "credits",
     "coords",
-    "png"
+    "image"
   ],
   "$defs": {
-    "ArtworkCoords": {
-      "type": "object",
-      "properties": {
-        "link": {
-          "type": "string"
-        },
-        "top_left": {
-          "$ref": "#/$defs/PixelCoords"
-        }
-      },
-      "required": [
-        "link",
-        "top_left"
-      ]
-    },
     "ArtworkCredits": {
       "type": "object",
       "properties": {
@@ -74,21 +53,53 @@
         "maintainers"
       ]
     },
-    "PixelCoords": {
+    "ArtworkGlobalCoords": {
       "type": "object",
       "properties": {
-        "x": {
-          "type": "integer",
-          "format": "int32"
+        "link": {
+          "type": "string"
         },
-        "y": {
-          "type": "integer",
-          "format": "int32"
+        "top_left": {
+          "$ref": "#/$defs/PixelCoords"
         }
       },
       "required": [
-        "x",
-        "y"
+        "link",
+        "top_left"
+      ]
+    },
+    "ArtworkImage": {
+      "type": "object",
+      "properties": {
+        "coords": {
+          "$ref": "#/$defs/PixelCoords"
+        },
+        "png": {
+          "type": "string"
+        },
+        "tile": {
+          "$ref": "#/$defs/PixelCoords"
+        }
+      },
+      "required": [
+        "tile",
+        "coords",
+        "png"
+      ]
+    },
+    "PixelCoords": {
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "type": "integer",
+          "format": "int32"
+        }
       ]
     }
   }

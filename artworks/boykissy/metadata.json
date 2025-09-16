@@ -6,7 +6,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.182690758083275&lng=21.34256802802733&zoom=15.887549562458203",
-        "top_left": { "x": 1415, "y": 3101 }
+        "top_left": [1415, 3101]
     },
-    "png": "boykissy.png"
+    "image": {
+        "tile": [1145, 727],
+        "coords": [415, 101],
+        "png": "boykissy.png"
+    }
 }

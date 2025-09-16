@@ -10,8 +10,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.16650172790631&lng=21.18735318427732&zoom=16.155257546899563",
-        "top_left": { "x": 532, "y": 3234 }
+        "top_left": [532, 3234]
     },
-    "tile": "https://backend.wplace.live/files/s0/tiles/1144/727.png",
-    "png": "wplace_puro.png"
+    "image": {
+        "tile": [1144, 727],
+        "coords": [532, 234],
+        "png": "wplace_puro.png"
+    }
 }

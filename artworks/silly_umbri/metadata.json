@@ -8,8 +8,11 @@
     },
     "coords": {
         "link": "https://wplace.live/?lat=46.159318602056246&lng=21.170478184277325&zoom=15.640551645565136",
-        "top_left": { "x": 436, "y": 3293 }
+        "top_left": [436, 3293]
     },
-    "tile": "https://backend.wplace.live/files/s0/tiles/1144/727.png",
-    "png": "silly_umbri.png"
+    "image": {
+        "tile": [1144, 727],
+        "coords": [436, 292],
+        "png": "silly_umbri.png"
+    }
 }

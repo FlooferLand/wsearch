@@ -9,7 +9,7 @@ use crate::routes::{BuiltProceduralRoute, BuiltRoute, BuiltStructuredRoute, Proc
 pub struct Generator<Data> {
 	routes: Vec<BuiltRoute<Data>>,
 	path_mounts: Vec<(String, String)>,
-	touchups: Vec<fn(&Data)>,
+	touchups: Vec<fn(&PathBuf, &Data)>,
 	static_dir: PathBuf,
 	styles_dir: PathBuf,
 	build_dir: PathBuf,
@@ -46,7 +46,7 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 		self
 	}
 
-	pub fn touchup(mut self, func: fn(&Data)) -> Self {
+	pub fn touchup(mut self, func: fn(&PathBuf, &Data)) -> Self {
 		self.touchups.push(func);
 		self
 	}
@@ -134,11 +134,12 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 
 		// Calling all the touchup functions to add more thingies
 		for touchup in self.touchups {
-			touchup(&data);
+			touchup(&self.build_dir, &data);
 		}
 	}
 }
 
+#[allow(unused)]
 /// Returns true if a is newer than b
 fn should_replace(replacement: &PathBuf, to_be_replaced: &PathBuf) -> bool {
 	let Ok(replacement) = std::fs::metadata(replacement)

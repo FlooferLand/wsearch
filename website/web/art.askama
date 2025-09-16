@@ -1,9 +1,23 @@
 {% extends "base.askama" %}
 
+{%- block head %}
+	<link rel="stylesheet" type="text/css" href="$styles/art.scss" />
+{% endblock -%}
+
 {% block body %}
 	{% let metadata = artwork.metadata %}
 	<h1>{{ metadata.name }}</h1>
-	<img src="$data/{{ artwork.slug }}/{{ metadata.png }}" height="300px" style="image-rendering: pixelated" />
+	<div id="preview-container">
+		<div class="child">
+			<p>Snapshot:</p>
+			<img src="$data/{{ artwork.slug }}/{{ metadata.image.png }}" height="300px" style="image-rendering: pixelated" />
+		</div>
+		<div class="child">
+			<p>Live preview:</p>
+			<img id="wplace-preview" height="300px" style="image-rendering: pixelated" />
+			<canvas id="wplace-preview-canvas" style="display: none"></canvas>
+		</div>
+	</div>
 	<br />
 
 	{#- Credits #}
@@ -33,18 +47,26 @@
 	<p>Top left: <a href="{{ metadata.coords.link }}">{{ metadata.coords.top_left }}</a></p>
 
 	{#- Overlay Pro #}
-	{% if let Some(overlay) = artwork.overlay %}
-		{% if let Ok(overlay) = serde_json::to_string_pretty(overlay) %}
-			<h2>Overlay Pro</h2>
-			<button id="copy-overlay-pro">Copy to clipboard</button>
-			<pre id="overlay-pro-code" class="codeblock">{{ overlay }}</pre>
-			<script defer>
-				const copyButton = document.getElementById("copy-overlay-pro");
-				const overlayProCode = document.getElementById("overlay-pro-code");
-				copyButton.addEventListener("click", function(e) {
-					navigator.clipboard.writeText(overlayProCode.textContent);
-				});
-			</script>
-		{% endif %}
+	{% let overlay = artwork.overlay %}
+	{% if let Ok(overlay) = serde_json::to_string_pretty(overlay) %}
+		<h2>Overlay Pro</h2>
+		<button id="copy-overlay-pro">Copy to clipboard</button>
+		<pre id="overlay-pro-code" class="codeblock">{{ overlay }}</pre>
+		<script defer>
+			const copyButton = document.getElementById("copy-overlay-pro");
+			const overlayProCode = document.getElementById("overlay-pro-code");
+			copyButton.addEventListener("click", function(e) {
+				navigator.clipboard.writeText(overlayProCode.textContent);
+			});
+		</script>
 	{% endif %}
+
+	{# TODO: Add proper grief detection; Turning labels red in the index when a grief is detected #}
+	{# <canvas id="wplace-canvas"></canvas>
+	   <canvas id="target-canvas"></canvas> #}
+
+	<script defer>
+		const artUrl = "$data/{{ artwork.slug }}";
+	</script>
+	<script src="$scripts/preview.js" defer></script>
 {% endblock %}

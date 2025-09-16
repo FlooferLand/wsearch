@@ -1,6 +1,6 @@
 use schemars::JsonSchema;
 use serde::{Serialize, Deserialize};
-use crate::types::PixelCoords;
+use crate::data::artworks::ArtworkMetadata;
 
 /// Overlay file for Overlay Pro
 #[derive(Serialize, Deserialize, JsonSchema)]
@@ -16,12 +16,24 @@ pub struct OverlayPro {
 	pub opacity: f32
 }
 impl OverlayPro {
-	fn new(name: String, image_url: String, pixel_url: String, offset: PixelCoords) -> Self {
+	pub fn new(slug: &str, metadata: &ArtworkMetadata) -> Self {
 		Self {
 			version: 1,
-			name, image_url, pixel_url,
-			offset_x: offset.x,
-			offset_y: offset.y,
+			name: metadata.name.clone(),
+			image_url: format!(
+				"https://wsearch.flooferland.com/static/data/{Slug}/{PNG}",
+				Slug = &slug,
+				PNG = &metadata.image.png
+			),
+			pixel_url: format!(
+				"https://backend.wplace.live/s0/pixel/{TileX}/{TileY}?x={X}&y={Y}",
+				TileX = metadata.image.tile.x,
+				TileY = metadata.image.tile.y,
+				X = metadata.image.coords.y,
+				Y = metadata.image.coords.y,
+			),
+			offset_x: 0,
+			offset_y: 0,
 			opacity: 1.0
 		}
 	}

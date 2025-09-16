@@ -1,0 +1,11 @@
+// art.askama
+
+#preview-container {
+    display: flex;
+    width: max-content;
+    gap: 8pt;
+    .child {
+        border: 5pt solid #0003;
+        flex: 1;
+    }
+}
