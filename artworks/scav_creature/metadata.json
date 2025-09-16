@@ -1,7 +1,10 @@
 {
     "name": "Scav Prototype creature",
     "credits": {
-        "maintainers": ["TrueChaos #4309268"],
+        "maintainers": [
+            "TrueChaos #4309268",
+            "FlooferLand (RO) #5674026 (@flooferland)"
+        ],
         "artists": ["TrueChaos #4309268"],
         "additional": "Original design from Scav Prototype"
     },
