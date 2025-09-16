@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="$styles/main.scss" />
 		<link rel="icon" type="image/png" href="$static/favicon.png" />
 
-		<script src="$scripts/base.ts"></script>
+		<script src="$scripts/theme.js" defer></script>
 
 		{%- block head %}{% endblock -%}
 		{%- if let Ok(_) = "debug_served"|value::<bool> -%}
@@ -25,8 +25,15 @@
 			<li><img id="logo" src="$static/favicon.png" width="32px" /></li>
 			<li><span id="logo-text">wsearch</span></li>
 			<li><a href="/">home</a></li>
-			<br/>
-			<button id="switch-theme">Real</button>
+
+			{#- Theme #}
+			<noscript><style>#theme-picker { display: none; }</style></noscript>
+			<li><select id="theme-picker">
+				<option value="auto" selected>Theme: Auto</option>
+				<option value="dark">Theme: Dark</option>
+				<option value="light">Theme: Light</option>
+			</select></li>
+			<li><p style="color: orangered" id="theme-notice"></p></li>
 		</ul>
 
 		{#- Body #}

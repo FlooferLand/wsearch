@@ -9,12 +9,22 @@
 	--text-color: #000;
 }
 
+:root {
+	@include dark-theme;
+	color-scheme: light dark;
+}
 :root[color-scheme="light"] {
 	@include light-theme;
 }
 :root[color-scheme="dark"] {
 	@include dark-theme;
 }
-:root {
+
+[data-theme="light"] {
+	@include light-theme;
+	color-scheme: light;
+}
+[data-theme="dark"] {
 	@include dark-theme;
+	color-scheme: dark;
 }

@@ -13,6 +13,7 @@ fn main() {
 		.route::<IndexRoute>("/", "Home")
 		.insert_data(load_data())
 		.mount("$static", "/static")
+		.mount("$scripts", "/static/scripts")
 		.mount("$styles", "/static/styles")
 		.styles_dir("./website/web/static/styles")
 		.static_dir("./website/web/static")
