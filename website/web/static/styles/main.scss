@@ -43,10 +43,8 @@ ol, ul {
 }
 
 footer {
+    margin: 5rem 0.8rem 0rem 0.8rem;
 	padding: 0.5rem;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
 	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
 	p {
 		opacity: 50%;
