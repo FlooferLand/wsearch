@@ -29,7 +29,7 @@ impl OverlayPro {
 				"https://backend.wplace.live/s0/pixel/{TileX}/{TileY}?x={X}&y={Y}",
 				TileX = metadata.image.tile.x,
 				TileY = metadata.image.tile.y,
-				X = metadata.image.coords.y,
+				X = metadata.image.coords.x,
 				Y = metadata.image.coords.y,
 			),
 			offset_x: 0,
