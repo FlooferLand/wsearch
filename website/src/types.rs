@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -9,5 +11,10 @@ pub struct PixelCoords {
 impl PixelCoords {
 	pub fn new(x: i32, y: i32) -> Self {
 		Self { x, y }
+	}
+}
+impl Display for PixelCoords {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(f, "({}, {})", self.x, self.y)
 	}
 }

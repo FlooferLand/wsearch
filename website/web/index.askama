@@ -14,4 +14,10 @@
 			{%- endfor -%}
 		</ol>
 	</label>
+
+	<div class="panel">
+		{% let new_url = "https://github.com/FlooferLand/wsearch/issues/new?template=index-a-new-artwork.md" %}
+		<p>If you'd like to add a new piece of art</p>
+		<p>Do so <a href="{{ new_url }}">here!</a></p>
+	</div>
 {% endblock %}

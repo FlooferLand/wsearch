@@ -1,5 +1,13 @@
-p, h1, h2, h3, h4, h5, h6, label {
+p, label {
+	padding: 0;
 	margin: 0 0 0.5rem 0;
+	color: var(--text-color);
+	user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 1.3rem 0 0.5rem 0;
 	color: var(--text-color);
 	user-select: none;
 }
@@ -8,11 +16,7 @@ small {
 	opacity: 60%;
 }
 
-a {
-	user-select: none;
-}
-
-img {
+a, br, img {
 	-webkit-user-drag: none;
 	user-select: none;
 }

@@ -1,6 +1,50 @@
 {% extends "base.askama" %}
 
 {% block body %}
-	<p>{{ artwork.metadata.name }}</p>
-	<img src="/data/{{ artwork.slug }}/{{ artwork.metadata.png }}" height="300px" style="image-rendering: pixelated" />
+	{% let metadata = artwork.metadata %}
+	<h1>{{ metadata.name }}</h1>
+	<img src="$data/{{ artwork.slug }}/{{ metadata.png }}" height="300px" style="image-rendering: pixelated" />
+	<br />
+
+	{#- Credits #}
+	{% let credits = metadata.credits %}
+	<h2>Maintainers</h2>
+	<ol>
+		{% for maintainer in credits.maintainers %}
+			<pre class="username">{{ maintainer }}</pre>
+		{% endfor %}
+	</ol>
+
+	{% if let Some(artists) = credits.artists %}
+		<h2>Artists</h2>
+		<ol>
+			{% for artist in artists %}
+				{% if artist.starts_with("#") %}
+					<h4>{{ artist }}</h4>
+				{% else %}
+					<pre class="username">{{ artist }}</pre>
+				{% endif %}
+			{% endfor %}
+		</ol>
+	{% endif %}
+
+	{#- Other #}
+	<h2>Coords</h2>
+	<p>Top left: <a href="{{ metadata.coords.link }}">{{ metadata.coords.top_left }}</a></p>
+
+	{#- Overlay Pro #}
+	{% if let Some(overlay) = artwork.overlay %}
+		{% if let Ok(overlay) = serde_json::to_string_pretty(overlay) %}
+			<h2>Overlay Pro</h2>
+			<button id="copy-overlay-pro">Copy to clipboard</button>
+			<pre id="overlay-pro-code" class="codeblock">{{ overlay }}</pre>
+			<script defer>
+				const copyButton = document.getElementById("copy-overlay-pro");
+				const overlayProCode = document.getElementById("overlay-pro-code");
+				copyButton.addEventListener("click", function(e) {
+					navigator.clipboard.writeText(overlayProCode.textContent);
+				});
+			</script>
+		{% endif %}
+	{% endif %}
 {% endblock %}

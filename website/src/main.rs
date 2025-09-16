@@ -16,6 +16,7 @@ fn main() {
 		.mount("$static", "/static")
 		.mount("$scripts", "/static/scripts")
 		.mount("$styles", "/static/styles")
+		.mount("$data", "/static/data")
 		.styles_dir("./website/web/static/styles")
 		.static_dir("./website/web/static")
 		.data_dir("./artworks")

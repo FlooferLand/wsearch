@@ -25,3 +25,19 @@ ol, ul {
     margin: 0.8rem;
     padding: 0;
 }
+
+.username {
+    background-color: color-mix(in srgb, var(--background-color) 50%, light-dark(white, black));
+	padding: 0.3rem;
+}
+
+.panel {
+	padding: 0.5rem;
+	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
+}
+
+.codeblock {
+	padding: 0.5rem;
+	background-color: color-mix(in srgb, var(--background-color) 55%, light-dark(white, black));
+	overflow: hidden;
+}

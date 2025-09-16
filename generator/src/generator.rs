@@ -136,7 +136,8 @@ fn should_replace(replacement: &PathBuf, to_be_replaced: &PathBuf) -> bool {
 	let Ok(to_be_replaced) = std::fs::metadata(to_be_replaced)
 		.and_then(|m| m.modified())
 		else { return true };
-	replacement > to_be_replaced
+	//replacement > to_be_replaced
+	true // TODO: This function is bugged currently, won't always update correctly.
 }
 
 /// Recursive function to copy everything from the source folders into the build folder.

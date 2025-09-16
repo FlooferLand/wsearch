@@ -19,13 +19,13 @@ pub struct ArtworkMetadata {
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
-struct ArtworkCredits {
+pub struct ArtworkCredits {
 	pub maintainers: Vec<String>,
 	pub artists: Option<Vec<String>>
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
-struct ArtworkCoords {
+pub struct ArtworkCoords {
 	pub link: String,
 	pub top_left: PixelCoords
 }
