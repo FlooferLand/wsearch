@@ -69,6 +69,10 @@
 				<form action="/search" method="get">
 					<input id="search-box" name="q" type="text" placeholder="Search here!" required />
 				</form>
+				<script defer>
+					const searchBox = document.getElementById("search-box");
+					searchBox.textContent = "";
+				</script>
 			</li>
 		</ul>
 

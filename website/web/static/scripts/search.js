@@ -7,7 +7,7 @@ const searchTerms = document.querySelectorAll("span.search-term");
 /** @param {{ [string]: string }} */
 function updateResults(json) {
     /** @type {string} */
-    const param = new URLSearchParams(window.location.search).get("q");
+    const param = (new URLSearchParams(window.location.search)?.get("q") ?? "").toLowerCase();
     for (let term of searchTerms) {
         term.textContent = param;
     }
