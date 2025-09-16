@@ -22,9 +22,15 @@ jobs:
         uses: actions/checkout@v5
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      # Building
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
       - name: Build the website
         run: |
           cargo run --package website --release
+      
+      # Deploying
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v4
         with:
