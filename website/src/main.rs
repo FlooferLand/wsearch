@@ -18,6 +18,7 @@ fn main() {
 		.mount("$styles", "/static/styles")
 		.styles_dir("./website/web/static/styles")
 		.static_dir("./website/web/static")
+		.data_dir("./artworks")
 		.build_dir("./build")
 		.build();
 }

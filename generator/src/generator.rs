@@ -12,6 +12,7 @@ pub struct Generator<Data> {
 	static_dir: PathBuf,
 	styles_dir: PathBuf,
 	build_dir: PathBuf,
+	data_dir: PathBuf,
 	global_data: Option<Data>,
 }
 impl<'a, Data: Default + 'a> Generator<Data> {
@@ -31,6 +32,11 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 
 	pub fn build_dir(mut self, dir: &str) -> Self {
 		self.build_dir = PathBuf::from(dir.to_owned());
+		self
+	}
+
+	pub fn data_dir(mut self, dir: &str) -> Self {
+		self.data_dir = PathBuf::from(dir.to_owned());
 		self
 	}
 
@@ -68,16 +74,30 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 		// Setup
 		let _ = std::fs::create_dir_all(&self.build_dir);
 
-		// Removing existing static directories
+		// Static dir
 		let target_static_dir = self.build_dir.join("static/");
-		if let Err(err) = std::fs::remove_dir_all(&target_static_dir) {
-			eprintln!("Failed to remove static dir '{}': {err}", &target_static_dir.display());
+		if should_replace(&self.static_dir, &target_static_dir) {
+			if std::fs::exists(&target_static_dir).unwrap_or(true) {
+				if let Err(err) = std::fs::remove_dir_all(&target_static_dir) {
+					eprintln!("Failed to remove static dir '{}': {err}", &target_static_dir.display());
+				}
+			}
+			if let Err(err) = process_and_copy(&self.static_dir, &target_static_dir, &self) {
+				eprintln!("Failed to copy over static dir '{}' to '{}': {err}", &self.static_dir.display(), &target_static_dir.display());
+			}
 		}
 
-		// Copying over static dir
-		let copy_res = process_and_copy(&self.static_dir, &target_static_dir, &self);
-		if let Err(err) = copy_res {
-			eprintln!("Failed to copy over static dir '{}' to '{}': {err}", &self.static_dir.display(), &target_static_dir.display());
+		// Data dir
+		let target_data_dir = self.build_dir.join("static/data/");
+		if should_replace(&self.data_dir, &target_data_dir) {
+			if std::fs::exists(&target_data_dir).unwrap_or(true) {
+				if let Err(err) = std::fs::remove_dir_all(&target_data_dir) {
+					eprintln!("Failed to remove data dir '{}': {err}", &target_data_dir.display());
+				}
+			}
+			if let Err(err) = process_and_copy(&self.data_dir, &target_data_dir, &self) {
+				eprintln!("Failed to copy over data dir '{}' to '{}': {err}", &self.data_dir.display(), &target_data_dir.display());
+			}
 		}
 
 		// Building all the routes
@@ -106,6 +126,17 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 			};
 		}
 	}
+}
+
+/// Returns true if a is newer than b
+fn should_replace(replacement: &PathBuf, to_be_replaced: &PathBuf) -> bool {
+	let Ok(replacement) = std::fs::metadata(replacement)
+		.and_then(|m| m.modified())
+		else { return true };
+	let Ok(to_be_replaced) = std::fs::metadata(to_be_replaced)
+		.and_then(|m| m.modified())
+		else { return true };
+	replacement > to_be_replaced
 }
 
 /// Recursive function to copy everything from the source folders into the build folder.
