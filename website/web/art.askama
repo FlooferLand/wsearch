@@ -59,6 +59,11 @@
 				navigator.clipboard.writeText(overlayProCode.textContent);
 			});
 		</script>
+		<noscript><style>
+			#copy-overlay-pro {
+				display: none;
+			}
+		</style></noscript>
 	{% endif %}
 
 	{# TODO: Add proper grief detection; Turning labels red in the index when a grief is detected #}
