@@ -4,6 +4,8 @@ const image = document.getElementById("wplace-preview");
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById("wplace-preview-canvas");
 const ctx = canvas.getContext("2d");
+canvas.width = 300;
+canvas.height = 300;
 
 function run(metadata) {
     const tileCoords = { x: metadata.image.tile[0], y: metadata.image.tile[1] };
@@ -24,6 +26,7 @@ function run(metadata) {
         wplaceImage.onload = function () {
             canvas.width = targetSize.width;
             canvas.height = targetSize.height;
+            ctx.fill()
             ctx.drawImage(wplaceImage, relCoords.x, relCoords.y, targetSize.width, targetSize.height, 0, 0, targetSize.width, targetSize.height);
             image.src = canvas.toDataURL();
         };

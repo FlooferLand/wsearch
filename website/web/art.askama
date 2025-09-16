@@ -66,6 +66,12 @@
 		</style></noscript>
 	{% endif %}
 
+	{#- Edit links #}
+	<h2>Contribute!</h2>
+	<p><a href="{{ crate::ADD_NEW_ARTWORK_URL }}">Add a new drawing</a></p>
+	<p><a href="https://github.com/FlooferLand/wsearch/edit/main/artworks/{{ artwork.slug }}/metadata.json">Edit metadata.json</a></p>
+	<p><a href="https://github.com/FlooferLand/wsearch/tree/main/artworks/{{ artwork.slug }}">View folder</a></p>
+
 	{# TODO: Add proper grief detection; Turning labels red in the index when a grief is detected #}
 	{# <canvas id="wplace-canvas"></canvas>
 	   <canvas id="target-canvas"></canvas> #}

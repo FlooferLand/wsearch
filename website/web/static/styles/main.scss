@@ -4,7 +4,7 @@
 
 html {
 	color-scheme: dark;
-	font-size: 120%;
+	font-size: 130%;
 }
 
 body {
@@ -18,7 +18,12 @@ body {
 }
 
 ol, ul {
+	padding-top: 0;
 	padding-left: 1.4rem;
+
+	li {
+		padding-bottom: 0.15rem;
+	}
 }
 
 #page-body {
@@ -29,6 +34,7 @@ ol, ul {
 .username {
     background-color: color-mix(in srgb, var(--background-color) 50%, light-dark(white, black));
 	padding: 0.3rem;
+	margin: 0;
 }
 
 .panel {

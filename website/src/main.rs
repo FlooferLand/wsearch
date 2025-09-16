@@ -10,6 +10,8 @@ use crate::data::Data;
 use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
 
+const ADD_NEW_ARTWORK_URL: &str = "https://github.com/FlooferLand/wsearch/issues/new?template=index-a-new-artwork.md";
+
 fn main() {
 	Generator::new()
 		.route::<IndexRoute>("/", "Home")
