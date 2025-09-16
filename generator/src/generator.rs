@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use std::{env, io};
 use std::path::{Path, PathBuf};
 
-use crate::routes::{BuiltRoute, Route};
+use crate::routes::{BuiltProceduralRoute, BuiltRoute, BuiltStructuredRoute, ProcRouteBuilder, ProceduralRoute, Route, WebTemplate};
 
 #[derive(Default)]
 pub struct Generator<Data> {
@@ -45,11 +45,21 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 	}
 
 	pub fn route<'b, R>(mut self, path: &'b str, title: &'b str) -> Self where R: Route<Data> + 'static {
-		let built = BuiltRoute {
+		let built = BuiltRoute::Structured(BuiltStructuredRoute {
 			path: path.to_string(),
 			title: title.to_string(),
 			inner: Box::new(R::construct())
-		};
+		});
+		self.routes.push(built);
+		self
+	}
+
+	pub fn proc_route<'b, R>(mut self, path: &'b str, title: &'b str) -> Self where R: ProceduralRoute<Data> + 'static {
+		let built = BuiltRoute::Procedural(BuiltProceduralRoute {
+			path: path.to_string(),
+			title: title.to_string(),
+			inner: Box::new(R::construct())
+		});
 		self.routes.push(built);
 		self
 	}
@@ -72,11 +82,28 @@ impl<'a, Data: Default + 'a> Generator<Data> {
 
 		// Building all the routes
 		let data = self.global_data.unwrap();
-		for route in self.routes {
-			if let Err(err) = build_route::<Data>(&self.build_dir, &data, &route, &self.path_mounts) {
-				eprintln!("Error building route '{}':\n  - {}", &route.path, err);
-				continue;
-			}
+		for route in &self.routes {
+			let route_path = match route {
+				BuiltRoute::Structured(route) => route.path.clone(),
+				BuiltRoute::Procedural(route) => route.path.clone(),
+			};
+			match route {
+				BuiltRoute::Structured(route) => {
+					let template = route.inner.build(&data).expect("Failed building route");
+					if !build_route_or_warn(&self.build_dir, &route_path, &template, &self.path_mounts) {
+						continue;
+					}
+				},
+				BuiltRoute::Procedural(route) => {
+					let mut builder = ProcRouteBuilder::default();
+					route.inner.build(&data, &mut builder).expect("Failed building route");
+					for (path, _title, template) in &builder.routes {
+						if !build_route_or_warn(&self.build_dir, &format!("{route_path}/{path}"), template, &self.path_mounts) {
+							continue;
+						}
+					}
+				},
+			};
 		}
 	}
 }
@@ -113,26 +140,35 @@ fn process_and_copy<Data>(src: &Path, dst: &Path, generator: &Generator<Data>) -
 	Ok(())
 }
 
-/// Builds and renders a route, then writes it to a file
-fn build_route<'a, Data>(
-	build_dir: &Path, 
-	data: &'a Data, 
-	route: &BuiltRoute<Data>, 
+// Build and render; Tiny wrapper function to avoid duplicating code.
+// Returns true if the render succeeded
+fn build_route_or_warn<'a>(
+	build_dir: &Path,
+	route_path: &str,
+	template: &WebTemplate, 
+	path_mounts: &Vec<(String, String)>
+) -> bool {
+	if let Err(err) = render_route(&build_dir, &route_path, &template, &path_mounts) {
+		eprintln!("Error building route '{}':\n  - {}", &route_path, err);
+		return false;
+	}
+	return true;
+}
+
+/// Renders a route, then writes it to a file
+fn render_route<'a>(
+	build_dir: &Path,
+	route_path: &str,
+	template: &WebTemplate, 
 	path_mounts: &Vec<(String, String)>
 ) -> Result<(), String> {
-	// Building
-	let built = match route.inner.build(data) {
-		Ok(value) => value,
-		Err(err) => return Err(format!("Failed to render:\n{err}"))
-	};
-
 	// Rendering
 	let mut values: HashMap<&str, Box<dyn Any>> = HashMap::new();
 	values.insert("title", Box::new("wsearch"));
 	if env::args().any(|a| a == "--served") {
 		values.insert("debug_served", Box::new(true));
 	}
-	let mut rendered = built.dyn_render_with_values(&values).unwrap();
+	let mut rendered = template.dyn_render_with_values(&values).unwrap();
 
 	// Replacing paths inside render
 	for (local, external) in path_mounts {
@@ -161,16 +197,21 @@ fn build_route<'a, Data>(
 
 	// Sanitizing the file path
 	let cleaned_route = {
-		let length = route.path.len();
-		let mut cleaned_route = String::with_capacity(length + 10);
-		if length == 1 {
-			cleaned_route.push_str("index.html");
+		let mut cleaned_path = PathBuf::from(route_path);
+		if cleaned_path.file_name().is_none() {
+			cleaned_path = cleaned_path.with_file_name("index");
 		}
-		cleaned_route
+		if cleaned_path.extension().is_none() {
+			cleaned_path = cleaned_path.with_extension("html");
+		}
+		cleaned_path
 	};
 
 	// Writing the file
-	let out_path = build_dir.join(&cleaned_route);
+	let out_path = PathBuf::from(format!("{}{}", build_dir.display(), cleaned_route.display()));
+	if let Some(parent) = out_path.parent() {
+		let _ = std::fs::create_dir_all(parent);
+	}
 	let write_result = std::fs::write(&out_path, rendered);
 	if let Err(err) = write_result {
 		return Err(format!("Writing to file '{}' failed: {err}", &out_path.display()));

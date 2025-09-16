@@ -1,0 +1,6 @@
+{% extends "base.askama" %}
+
+{% block body %}
+	<p>{{ artwork.metadata.name }}</p>
+	<img src="/data/{{ artwork.slug }}/{{ artwork.metadata.png }}.png" height="300px" style="image-rendering: pixelated" />
+{% endblock %}
