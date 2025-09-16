@@ -9,6 +9,7 @@ pub struct Data {
 }
 
 pub struct Artwork {
+	pub slug: String,
 	pub metadata: ArtworkMetadata,
 	pub overlay: Option<OverlayPro>
 }

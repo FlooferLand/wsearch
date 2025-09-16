@@ -1,7 +1,6 @@
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use jsonschema::Validator;
 use schemars::{schema_for, JsonSchema};
-use schemars::_private::NoSerialize;
 use serde::{Deserialize, Serialize};
 use crate::data::Artwork;
 use crate::overlay::OverlayPro;
@@ -69,7 +68,8 @@ pub fn load_artworks() -> Vec<Artwork> {
 		let Ok(dir) = dir else { continue };
 		let Ok(kind) = dir.file_type() else { continue };
 		if !kind.is_dir() { continue };
-		if dir.file_name().to_string_lossy().starts_with("_") {
+		let slug = dir.file_name().to_string_lossy().to_string();
+		if slug.starts_with("_") {
 			continue
 		}
 
@@ -89,7 +89,7 @@ pub fn load_artworks() -> Vec<Artwork> {
 		}
 		
 		// Adding the new artwork
-		artworks.push(Artwork { metadata, overlay });
+		artworks.push(Artwork { slug, metadata, overlay });
 	}
 	artworks
 }

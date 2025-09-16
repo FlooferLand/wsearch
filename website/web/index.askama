@@ -6,7 +6,12 @@
 	<p><i><small>(Not officially affiliated with wplace)</small></i></p>
 	<br/>
 
-	{%- for artwork in artworks %}
-	<p>{{ artwork.metadata.name }}</p>
-	{%- endfor -%}
+	<label>
+		<p>Indexed:</p>
+		<ol>
+			{%- for artwork in artworks %}
+				<li><a href="/art/{{ artwork.slug }}">{{ artwork.metadata.name }}</a></li>
+			{%- endfor -%}
+		</ol>
+	</label>
 {% endblock %}

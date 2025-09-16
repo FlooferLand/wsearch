@@ -1,4 +1,4 @@
-p, h1, h2, h3, h4, h5, h6 {
+p, h1, h2, h3, h4, h5, h6, label {
 	margin: 0 0 0.5rem 0;
 	color: var(--text-color);
 	user-select: none;
@@ -6,6 +6,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 small {
 	opacity: 60%;
+}
+
+a {
+	user-select: none;
 }
 
 img {
