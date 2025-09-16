@@ -2,6 +2,8 @@
 
 a search engine for wplace.
 
+use it over at https://wsearch.flooferland.com
+
 ## Contributing
 
 all the data is located inside [the artworks folder](./artworks).
