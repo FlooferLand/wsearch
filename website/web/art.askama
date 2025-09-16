@@ -11,11 +11,19 @@
 		<div class="child">
 			<p>Snapshot:</p>
 			<img src="$data/{{ artwork.slug }}/{{ metadata.image.png }}" height="300px" style="image-rendering: pixelated" />
+			<pre>Original drawing</pre>
 		</div>
 		<div class="child">
-			<p>Live preview:</p>
-			<img id="wplace-preview" height="300px" style="image-rendering: pixelated" />
-			<canvas id="wplace-preview-canvas" style="display: none"></canvas>
+			<p>Live:</p>
+			<img id="wplace-live-preview" height="300px" style="image-rendering: pixelated" />
+			<canvas id="wplace-live-preview-canvas" style="display: none"></canvas>
+			<pre>Live from wplace</pre>
+		</div>
+		<div class="child">
+			<p>Live <i>(Clipped)</i>:</p>
+			<img id="wplace-clipped-preview" height="300px" style="image-rendering: pixelated" />
+			<canvas id="wplace-clipped-preview-canvas" style="display: none"></canvas>
+			<pre>Unrelated pixels removed</pre>
 		</div>
 	</div>
 	<br />

@@ -3,9 +3,33 @@
 #preview-container {
     display: flex;
     width: max-content;
+    height: max-content;
+    justify-content: center;
+    align-items: flex-start;
     gap: 8pt;
+
     .child {
-        border: 5pt solid #0003;
+        border: 3pt solid #0005;
         flex: 1;
+        overflow: hidden;
+        white-space: wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 0.8rem;
+        margin: 0;
+        background-image: linear-gradient(#fff5, #0005);
+
+        p {
+            text-shadow: 2px 1px 3px black;
+        }
+
+        pre {
+            margin: 0;
+            font-size: 80%;
+            white-space: wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 80%;
+        }
     }
 }

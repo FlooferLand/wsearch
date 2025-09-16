@@ -1,11 +1,19 @@
 /** @type {HTMLImageElement} */
-const image = document.getElementById("wplace-preview");
+const liveImage = document.getElementById("wplace-live-preview");
 
-/** @type {HTMLCanvasElement} */
-const canvas = document.getElementById("wplace-preview-canvas");
-const ctx = canvas.getContext("2d");
-canvas.width = 300;
-canvas.height = 300;
+/** @type {HTMLImageElement} */
+const clippedImage = document.getElementById("wplace-clipped-preview");
+
+/** @type {CanvasRenderingContext2D} */
+const liveCtx = document.getElementById("wplace-live-preview-canvas").getContext("2d");
+
+/** @type {CanvasRenderingContext2D} */
+const clippedCtx = document.getElementById("wplace-clipped-preview-canvas").getContext("2d");
+
+liveCtx.canvas.width = 300;
+liveCtx.canvas.height = 300;
+clippedCtx.canvas.width = 300;
+clippedCtx.canvas.height = 300;
 
 function run(metadata) {
     const tileCoords = { x: metadata.image.tile[0], y: metadata.image.tile[1] };
@@ -24,11 +32,21 @@ function run(metadata) {
         const wplaceImage = new Image();
         wplaceImage.crossOrigin = "anonymous";
         wplaceImage.onload = function () {
-            canvas.width = targetSize.width;
-            canvas.height = targetSize.height;
-            ctx.fill()
-            ctx.drawImage(wplaceImage, relCoords.x, relCoords.y, targetSize.width, targetSize.height, 0, 0, targetSize.width, targetSize.height);
-            image.src = canvas.toDataURL();
+            liveCtx.canvas.width = targetSize.width;
+            liveCtx.canvas.height = targetSize.height;
+            clippedCtx.canvas.width = targetSize.width;
+            clippedCtx.canvas.height = targetSize.height;
+
+            // Live
+            liveCtx.drawImage(wplaceImage, relCoords.x, relCoords.y, targetSize.width, targetSize.height, 0, 0, targetSize.width, targetSize.height);
+            liveImage.src = liveCtx.canvas.toDataURL();
+
+            // Clipped
+            clippedCtx.drawImage(localImage, 0, 0);
+            clippedCtx.globalCompositeOperation = "source-in";
+            clippedCtx.drawImage(wplaceImage, relCoords.x, relCoords.y, targetSize.width, targetSize.height, 0, 0, targetSize.width, targetSize.height);
+            clippedCtx.globalCompositeOperation = "source-over";
+            clippedImage.src = clippedCtx.canvas.toDataURL();
         };
         wplaceImage.src = proxied(tileUrl);
     };
