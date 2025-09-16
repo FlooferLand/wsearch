@@ -9,7 +9,38 @@
 				{%- endif -%}
 			{%- endblock -%}
         </title>
+
+		{#- Metadata tags #}
+		<meta name="title" content="wsearch">
+		<meta name="description" content="wsearch - a wplace search engine">
+		<meta content="#489ae0" data-react-helmet="true" name="theme-color">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://wsearch.flooferland.com">
+		<meta property="og:title" content="wsearch">
+		<meta property="og:description" content="wsearch - a wplace search engine">
+		<meta property="og:icon" content="https://wsearch.flooferland.com/favicon.ico">
+		<meta property="og:type" content="website">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:site_name" content="wsearch">
+		<meta property="twitter:url" content="https://wsearch.flooferland.com">
+		<meta property="twitter:title" content="wsearch">
+		<meta property="twitter:description" content="wsearch - a wplace search engine">
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org/",
+			"@type": "WebSite",
+			"name": "wsearch",
+			"url": "https://wsearch.flooferland.com",
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": "https://wsearch.flooferland.com/search?q={search_term_string}",
+				"query-input": "required name=search_term_string"
+			}
+		}
+		</script>
+
         <link rel="stylesheet" type="text/css" href="$styles/main.scss" />
+		<link rel="icon" type="image/x-icon" href="$static/favicon.ico" />
 		<link rel="icon" type="image/png" href="$static/favicon.png" />
 
 		<script src="$scripts/theme.js" defer></script>
