@@ -1,5 +1,10 @@
 {% extends "base.askama" %}
 
+
+{%- block metadata %}
+	{% call page_metadata(title=artwork.metadata.name, image=("$data/" ~ artwork.slug ~ "/" ~ artwork.metadata.image.png).to_string()) %}
+{% endblock -%}
+
 {%- block head %}
 	<link rel="stylesheet" type="text/css" href="$styles/art.scss" />
 {% endblock -%}

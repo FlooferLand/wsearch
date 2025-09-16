@@ -1,3 +1,15 @@
+{%- macro page_metadata(title = "wsearch - search the world", description = "a search engine for wplace", image = "") %}
+	<meta property="twitter:title" content="{{ title }}">
+	<meta property="og:title" content="{{ title }}">
+	<meta name="title" content="{{ title }}">
+	<meta property="twitter:description" content="{{ description }}">
+	<meta name="description" content="{{ description }}">
+	<meta property="og:description" content="{{ description }}">
+	{% if image.len() > 0 %}
+		<meta property="og:image" content={{ image }} />
+	{% endif %}
+{% endmacro -%}
+
 <html lang="en">
     <head>
 		<meta charset="UTF-8" />
@@ -11,20 +23,17 @@
         </title>
 
 		{#- Metadata tags #}
-		<meta name="title" content="wsearch">
-		<meta name="description" content="wsearch - a wplace search engine">
 		<meta content="#489ae0" data-react-helmet="true" name="theme-color">
+		<meta property="og:site_name" content="wsearch">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://wsearch.flooferland.com">
-		<meta property="og:title" content="wsearch">
-		<meta property="og:description" content="wsearch - a wplace search engine">
 		<meta property="og:icon" content="https://wsearch.flooferland.com/favicon.ico">
+		<meta property="twitter:url" content="https://wsearch.flooferland.com">
 		<meta property="og:type" content="website">
 		<meta property="og:locale" content="en_US">
-		<meta property="og:site_name" content="wsearch">
-		<meta property="twitter:url" content="https://wsearch.flooferland.com">
-		<meta property="twitter:title" content="wsearch">
-		<meta property="twitter:description" content="wsearch - a wplace search engine">
+		{%- block metadata %}
+			{% call page_metadata() %}
+		{% endblock -%}
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org/",
