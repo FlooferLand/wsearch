@@ -198,15 +198,17 @@ fn render_route<'a>(
 	// Sanitizing the file path
 	let cleaned_route = {
 		let mut cleaned_path = PathBuf::from(route_path);
-		if cleaned_path.file_name().is_none() {
-			cleaned_path = cleaned_path.with_file_name("index");
-		}
-		if cleaned_path.extension().is_none() {
-			cleaned_path = cleaned_path.with_extension("html");
+		if cleaned_path.file_name().is_none() && cleaned_path.extension().is_none() {
+			cleaned_path = cleaned_path
+				.with_file_name("index")
+				.with_extension("html");
+		} else if cleaned_path.extension().is_none() {
+			let _ = std::fs::create_dir_all(&cleaned_path);
+			cleaned_path = cleaned_path.join("index.html");
 		}
 		cleaned_path
 	};
-
+	
 	// Writing the file
 	let out_path = PathBuf::from(format!("{}{}", build_dir.display(), cleaned_route.display()));
 	if let Some(parent) = out_path.parent() {
