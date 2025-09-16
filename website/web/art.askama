@@ -40,6 +40,10 @@
 				{% endif %}
 			{% endfor %}
 		</ol>
+	{% else %}
+		<h2>Artist</h2>
+		<pre>Unknown</pre>
+		<p style="opacity: 50%"><i>If you know the artist please let me know and provide receipts!</i></p>
 	{% endif %}
 
 	{#- Other #}

@@ -1,0 +1,17 @@
+{
+    "name": "Shygirl",
+    "credits": {
+        "maintainers": [
+            "FlooferLand (RO) #5674026 (@flooferland)"
+        ]
+    },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.158101030147485&lng=21.310751621777335&zoom=15.921935451709848",
+        "top_left": [1234, 3303]
+    },
+    "image": {
+        "tile": [1145, 727],
+        "coords": [234, 303],
+        "png": "shygirl.png"
+    }
+}
