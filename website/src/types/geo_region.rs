@@ -34,6 +34,12 @@ impl From<GeographicalRegion> for GeographicalRegionInternal {
     }
 }
 
+impl Display for GeographicalRegion {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}, {}", self.country, self.state)
+    }
+}
+
 #[derive(Debug, Clone)]
 pub struct Country {
     inner: String
@@ -50,6 +56,6 @@ impl Country {
 }
 impl Display for Country {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.inner)
+        write!(f, "{}", self.inner.to_uppercase())
     }
 }
