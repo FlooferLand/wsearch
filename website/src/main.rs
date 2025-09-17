@@ -5,7 +5,7 @@ mod types;
 
 use std::{collections::HashMap, path::PathBuf};
 
-use crate::{data::artworks::load_artworks, routes::{arts::ArtsRoute, search::SearchRoute}};
+use crate::{data::{artworks::load_artworks, tags::load_tags}, routes::{arts::ArtsRoute, search::SearchRoute}};
 use crate::data::Data;
 use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
@@ -32,9 +32,9 @@ fn main() {
 }
 
 fn load_data() -> Data {
-	Data {
-		artworks: load_artworks()
-	}
+	let artworks = load_artworks();
+	let all_tags = load_tags(&artworks);
+	Data { artworks, all_tags }
 }
 
 // TODO: Move this to an "emit side-effect" type system, that automatically writes the fiels to disk into the build folder.

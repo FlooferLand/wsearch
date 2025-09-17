@@ -84,7 +84,7 @@
 					{% set search_url = "/search" %}
 				{%- endif -%}
 				<form action={{ search_url }} method="get">
-					<input id="search-box" name="q" type="text" placeholder="Search here!" title="Enter a search query" required />
+					<input id="search-box" name="q" type="text" placeholder="Search here!" title="Enter a search query" />
 				</form>
 				<script defer>
 					const searchBox = document.getElementById("search-box");

@@ -23,6 +23,13 @@
     },
     "region": {
       "$ref": "#/$defs/GeographicalRegion"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TagInternal"
+      },
+      "uniqueItems": true
     }
   },
   "additionalProperties": false,
@@ -31,7 +38,8 @@
     "credits",
     "coords",
     "image",
-    "region"
+    "region",
+    "tags"
   ],
   "$defs": {
     "ArtworkCredits": {
@@ -120,6 +128,9 @@
           "format": "int32"
         }
       ]
+    },
+    "TagInternal": {
+      "type": "string"
     }
   }
 }

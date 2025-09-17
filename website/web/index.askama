@@ -5,9 +5,12 @@
 	<p>The wplace search engine.</p>
 	<p><i><small>(Not officially affiliated with wplace)</small></i></p>
 	<br/>
+	<p>Click the search box in the top and type away,</p>
+	<p>or hit enter with an empty query to access the search filters</p>
+	<br/>
 
-	<label>
-		<p>Indexed:</p>
+	<details open>
+		<summary>Indexed</summary>
 		<ol>
 			{%- for artwork in artworks %}
 				<li>
@@ -19,7 +22,22 @@
 				</li>
 			{%- endfor -%}
 		</ol>
-	</label>
+	</details>
+
+	<details>
+		<summary>All tags</summary>
+		<ul>
+			{%- for tag in all_tags %}
+				<li>
+					{% if let Some(kind) = tag.kind %}
+						<p><span style="color: var(--primary-color)">{{ kind }}</span>:{{ tag.inner }}</p>
+					{% else %}
+						<p>{{ tag.inner }}</p>
+					{% endif %}
+				</li>
+			{%- endfor -%}
+		</ul>
+	</details>
 
 	<div class="panel">
 		<p>If you'd like to add a new piece of art</p>

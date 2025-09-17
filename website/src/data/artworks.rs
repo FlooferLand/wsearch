@@ -1,8 +1,8 @@
-use std::path::PathBuf;
+use std::{collections::HashSet, path::PathBuf};
 use jsonschema::Validator;
 use schemars::{schema_for, JsonSchema};
 use serde::{Deserialize, Serialize};
-use crate::{data::Artwork, types::geo_region::GeographicalRegion};
+use crate::{data::{tags::Tag, Artwork}, types::geo_region::GeographicalRegion};
 use crate::overlay::OverlayPro;
 use crate::types::coords::PixelCoords;
 
@@ -15,7 +15,8 @@ pub struct ArtworkMetadata {
 	pub coords: ArtworkGlobalCoords,
 	pub image: ArtworkImage,
 	pub license: Option<String>,
-	pub region: GeographicalRegion
+	pub region: GeographicalRegion,
+	pub tags: HashSet<Tag>
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]

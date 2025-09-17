@@ -17,5 +17,6 @@
         "tile": [1145, 727],
         "coords": [584, 137],
         "png": "scav_creature.png"
-    }
+    },
+    "tags": ["furry", "scav_prototype"]
 }
