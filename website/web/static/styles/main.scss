@@ -49,6 +49,7 @@ footer {
 .panel {
 	padding: 0.5rem;
 	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
+	border: 2pt solid #fff1;
 }
 
 .codeblock {

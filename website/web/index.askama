@@ -5,8 +5,15 @@
 	<p>The wplace search engine.</p>
 	<p><i><small>(Not officially affiliated with wplace)</small></i></p>
 	<br/>
-	<p>Click the search box in the top and type away,</p>
-	<p>or hit enter with an empty query to access the search filters</p>
+	<div class="panel">
+			<p><span class="website-name">wsearch'</span> main purpose is to act as an archival and protection program for artwork.</p>
+			<p>Any art indexed here is saved on my servers and can be compared to what it looks like live on wplace.</p>
+	</div>
+	<br/>
+	<div class="panel">
+		<p>Click the search box in the top and type away,</p>
+		<p>or hit enter with an empty query to access the search filters</p>
+	</div>
 	<br/>
 
 	<details open>
