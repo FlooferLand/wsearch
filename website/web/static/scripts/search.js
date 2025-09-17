@@ -39,9 +39,18 @@ function updateResults(json) {
         for (let id of tagIds) {
             found.add(id);
         }
+    } else {
+        // Slower search if no exact tag was found
+        for (let nane in json.tags) {
+            const ids = json.tags[nane];
+            if (nane.includes(query)) {
+                for (let id of ids) {
+                    found.add(id);
+                }
+            }
+        }
     }
 
-    console.log(found);
     // -- Constructing HTML
     let resultsHtml = "";
     for (let i of found) {
