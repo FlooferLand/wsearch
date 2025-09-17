@@ -18,6 +18,10 @@
         margin: 0;
         background-image: linear-gradient(#fff5, #0005);
 
+        img {
+            filter: drop-shadow(3px 3px 8px #0005);
+        }
+
         p {
             text-shadow: 2px 1px 3px black;
         }
