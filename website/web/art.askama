@@ -2,7 +2,11 @@
 
 
 {%- block metadata %}
-	{% call page_metadata(title=artwork.metadata.name, image=("$data/" ~ artwork.slug ~ "/" ~ artwork.metadata.image.png).to_string()) %}
+	{% call page_metadata(
+		title=artwork.metadata.name,
+		description="An artwork indexed by wsearch, a search engine for wplace",
+		image=("$data/" ~ artwork.slug ~ "/" ~ artwork.metadata.image.png).to_string()
+	) %}
 {% endblock -%}
 
 {%- block head %}
