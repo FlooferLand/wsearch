@@ -2,7 +2,7 @@
 name: Index a new artwork
 about: Request new art to be added!
 title: "[REQ] New art request"
-labels: New artwork
+labels: new artwork
 assignees: FlooferLand
 
 ---
