@@ -29,14 +29,6 @@ span, details {
 	user-select: none;
 }
 
-details {
-	padding: 0.5rem;
-	background-color: color-mix(in srgb, var(--background-color) 50%, transparent);
-	&:hover {
-		background-color: color-mix(in srgb, var(--background-color) 98%, transparent);
-	}
-}
-
 .website-name {
 	color: color-mix(in srgb, var(--primary-color) 60%, white);
 }

@@ -39,6 +39,10 @@ details {
 	padding: 0.8rem;
 	background-color: color-mix(in srgb, light-dark(white, black) 15%, transparent);
 	border: 2pt solid #fff1;
+
+	&:not([open]):hover {
+		background-color: color-mix(in srgb, var(--background-color) 98%, transparent);
+	}
 }
 
 #page-body {
