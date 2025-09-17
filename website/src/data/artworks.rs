@@ -16,7 +16,8 @@ pub struct ArtworkMetadata {
 	pub image: ArtworkImage,
 	pub license: Option<String>,
 	pub region: GeographicalRegion,
-	pub tags: HashSet<Tag>
+	pub tags: HashSet<Tag>,
+	#[serde(default)] pub unfinished: bool
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]

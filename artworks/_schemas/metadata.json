@@ -30,6 +30,10 @@
         "$ref": "#/$defs/TagInternal"
       },
       "uniqueItems": true
+    },
+    "unfinished": {
+      "type": "boolean",
+      "default": false
     }
   },
   "additionalProperties": false,

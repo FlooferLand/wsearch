@@ -11,7 +11,19 @@
 
 {% block body %}
 	{% let metadata = artwork.metadata %}
+	{% let credits = metadata.credits %}
+
+	{#- Name #}
 	<h1>{{ metadata.name }}</h1>
+
+	{% if artwork.metadata.unfinished %}
+		<br/>
+		<div class="unfinished-panel">
+			<p>This drawing is under construction <span>🚧</span></p>
+		</div>
+	{% endif %}
+	
+	{#- Preview images -#}
 	<div id="preview-container">
 		<div class="child">
 			<p>Snapshot:</p>
@@ -33,12 +45,12 @@
 	</div>
 	<br />
 
+	{#- Archive link #}
 	{% let archive_link = metadata.coords.link.replace("wplace.live/?", "wplace.samuelscheit.com/#").replace("zoom", "z") %}
 	<a href="{{ archive_link }}">View on Samuel Scheit's archive</a>
 	<br />
 
-	{#- Credits #}
-	{% let credits = metadata.credits %}
+	{#- Maintainers #}
 	<h2>Maintainers <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
 	<ol>
 		{% for maintainer in credits.maintainers %}
@@ -46,6 +58,7 @@
 		{% endfor %}
 	</ol>
 
+	{#- Artists #}
 	{% if let Some(artists) = credits.artists %}
 		<h2>Artists <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
 		<ol>

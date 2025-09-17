@@ -1,11 +1,13 @@
 @mixin dark-theme {
 	--background-color: #1a1b1f;
 	--primary-color: #28a3eb;
+	--warn-color: #ffda07;
 	--text-color: #fff;
 }
 @mixin light-theme {
 	--background-color: #d2d5ec;
 	--primary-color: #2082b8;
+	--warn-color: #e8b51c;
 	--text-color: #000;
 }
 

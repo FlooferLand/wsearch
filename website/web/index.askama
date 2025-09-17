@@ -18,17 +18,20 @@
 
 	<details open>
 		<summary>Indexed</summary>
-		<ol>
+		<ul>
 			{%- for artwork in artworks %}
 				<li>
 					<a href="/art/{{ artwork.slug }}" title="{{ artwork.metadata.name }} ({{ artwork.metadata.region.to_string() }})">
 						{%- let code = artwork.metadata.region.country.code() %}
+						{% if artwork.metadata.unfinished %}
+							<span>🚧</span>
+						{% endif %}
 						<img src="https://flagcdn.com/w320/{{ code }}.png" alt="({{ code }})" width="18px" />
 						{{ artwork.metadata.name }}
 					</a>
 				</li>
 			{%- endfor -%}
-		</ol>
+		</ul>
 		<div class="panel">
 			<p>
 				If you'd like to add a new piece of art,
