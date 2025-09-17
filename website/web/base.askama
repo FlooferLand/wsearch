@@ -74,6 +74,8 @@
 				<option value="light">Theme: Light</option>
 			</select></li>
 			<li><p style="color: orangered" id="theme-notice"></p></li>
+
+			{#- Search box #}
 			<li>
 				{%- let search_url -%}
 				{%- if ("debug"|value::<bool>).unwrap_or(&false) -%}
@@ -82,7 +84,7 @@
 					{% set search_url = "/search" %}
 				{%- endif -%}
 				<form action={{ search_url }} method="get">
-					<input id="search-box" name="q" type="text" placeholder="Search here!" required />
+					<input id="search-box" name="q" type="text" placeholder="Search here!" title="Enter a search query" required />
 				</form>
 				<script defer>
 					const searchBox = document.getElementById("search-box");
