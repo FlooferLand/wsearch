@@ -1,0 +1,7 @@
+{% extends "base.askama" %}
+
+{% block body %}
+	<p>Oh no, that URL is borked!</p>
+	<p>If this url was previously an artwork or something else important,
+		please <a href="https://github.com/FlooferLand/wsearch/issues/new/choose">contact me on GitHub.</a></p>
+{% endblock %}
