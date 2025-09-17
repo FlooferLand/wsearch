@@ -209,8 +209,11 @@ fn render_route<'a>(
 	// Rendering
 	let mut values: HashMap<&str, Box<dyn Any>> = HashMap::new();
 	values.insert("title", Box::new("wsearch"));
-	if env::args().any(|a| a == "--served") {
-		values.insert("debug_served", Box::new(true));
+	if cfg!(debug_assertions) {
+		values.insert("debug", Box::new(true));
+		if env::args().any(|a| a == "--served") {
+			values.insert("debug_served", Box::new(true));
+		}
 	}
 	let mut rendered = template.dyn_render_with_values(&values).unwrap();
 

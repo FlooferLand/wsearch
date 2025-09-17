@@ -75,7 +75,13 @@
 			</select></li>
 			<li><p style="color: orangered" id="theme-notice"></p></li>
 			<li>
-				<form action="/search" method="get">
+				{%- let search_url -%}
+				{%- if ("debug"|value::<bool>).unwrap_or(&false) -%}
+					{% set search_url = "/search/index.html" %}
+				{%- else -%}
+					{% set search_url = "/search" %}
+				{%- endif -%}
+				<form action={{ search_url }} method="get">
 					<input id="search-box" name="q" type="text" placeholder="Search here!" required />
 				</form>
 				<script defer>
