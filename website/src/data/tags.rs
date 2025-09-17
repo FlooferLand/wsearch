@@ -16,6 +16,7 @@ pub struct Tag {
 }
 impl Tag {
     pub fn from_str(string: &str) -> Self {
+        let string = string.trim().to_lowercase().replace(' ', "_");
         let split = string.split_once(':');
         if let Some((left, right)) = split {
             Self { kind: Some(left.to_owned()), inner: right.to_owned() }

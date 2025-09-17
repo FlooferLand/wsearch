@@ -9,8 +9,10 @@ use crate::{data::{artworks::load_artworks, tags::load_tags}, routes::{arts::Art
 use crate::data::Data;
 use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
+use serde::{Deserialize, Serialize};
 
 const ADD_NEW_ARTWORK_URL: &str = "https://github.com/FlooferLand/wsearch/issues/new?template=index-a-new-artwork.md";
+const EDIT_ARTWORK_URL:    &str = "https://github.com/FlooferLand/wsearch/issues/new?template=edit-an-artwork--metadata-info--image--etc-.md";
 
 fn main() {
 	Generator::new()
@@ -47,18 +49,27 @@ fn make_overlay_data(build_dir: &PathBuf, data: &Data) {
 
 // TODO: Move this to an "emit side-effect" type system, that automatically writes the fiels to disk into the build folder.
 fn make_search_data(build_dir: &PathBuf, data: &Data) {
-	let mut search_map = HashMap::with_capacity(data.artworks.len());
+	#[derive(Serialize, Deserialize)]
+	struct SearchData {
+		pub posts: Vec<(String, String)>,
+		pub names: HashMap<String, usize>,
+		pub tags: HashMap<String, Vec<usize>>
+	}
 
-	for artwork in &data.artworks {
-		let key_fields = [
-			&artwork.slug,
-			&artwork.metadata.name
-		];
-
-		let values = [&artwork.slug, &artwork.metadata.name];
-		for key in key_fields {
-			search_map.insert(key.to_lowercase(), values);
+	let mut search_map = SearchData { posts: Vec::new(), names: HashMap::new(), tags: HashMap::new() };
+	
+	for (i, artwork) in data.artworks.iter().enumerate() {
+		search_map.posts.insert(i, (artwork.slug.clone(), artwork.metadata.name.clone()));
+		search_map.names.insert(artwork.metadata.name.to_lowercase(), i);
+		for tag in &artwork.metadata.tags {
+			let tag = tag.to_string();
+			if let Some(key) = search_map.tags.get_mut(&tag) {
+				key.push(i);
+			} else {
+				search_map.tags.insert(tag.clone(), vec![i]);
+			}
 		}
+
 	}
 
 	// Serializing to JSON
