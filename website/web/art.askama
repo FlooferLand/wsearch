@@ -33,6 +33,10 @@
 	</div>
 	<br />
 
+	{% let archive_link = metadata.coords.link.replace("wplace.live/?", "wplace.samuelscheit.com/#").replace("zoom", "z") %}
+	<a href="{{ archive_link }}">View on Samuel Scheit's archive</a>
+	<br />
+
 	{#- Credits #}
 	{% let credits = metadata.credits %}
 	<h2>Maintainers <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
