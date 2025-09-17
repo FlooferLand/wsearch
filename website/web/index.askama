@@ -30,7 +30,7 @@
 			{%- for tag in all_tags %}
 				<li>
 					{% if let Some(kind) = tag.kind %}
-						<p><span style="color: var(--primary-color)">{{ kind }}</span>:{{ tag.inner }}</p>
+						<p><span style="color: var(--primary-color)">{{ kind }}:</span>{{ tag.inner }}</p>
 					{% else %}
 						<p>{{ tag.inner }}</p>
 					{% endif %}
