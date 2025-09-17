@@ -29,6 +29,10 @@
 				</li>
 			{%- endfor -%}
 		</ol>
+		<div class="panel">
+			<p>If you'd like to add a new piece of art</p>
+			<p>Feel free to do so <a href="{{ crate::ADD_NEW_ARTWORK_URL }}">here!</a></p>
+		</div>
 	</details>
 
 	<details>
@@ -45,9 +49,4 @@
 			{%- endfor -%}
 		</ul>
 	</details>
-
-	<div class="panel">
-		<p>If you'd like to add a new piece of art</p>
-		<p>Feel free to do so <a href="{{ crate::ADD_NEW_ARTWORK_URL }}">here!</a></p>
-	</div>
 {% endblock %}
