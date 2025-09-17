@@ -26,6 +26,15 @@ ol, ul {
 	}
 }
 
+footer {
+    margin: 5rem 0.8rem 0rem 0.8rem;
+	padding: 0.5rem;
+	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
+	p {
+		opacity: 50%;
+	}
+}
+
 #page-body {
     margin: 0.8rem;
     padding: 0;
@@ -48,11 +57,9 @@ ol, ul {
 	overflow: hidden;
 }
 
-footer {
-    margin: 5rem 0.8rem 0rem 0.8rem;
-	padding: 0.5rem;
-	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
-	p {
-		opacity: 50%;
-	}
+.edit-button {
+	font-size: 50%;
+	opacity: 80%;
+	text-align: center;
+	align-self: center;
 }

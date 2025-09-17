@@ -34,8 +34,9 @@
 	<br />
 
 	{#- Credits #}
+	{% let edit_link = "https://github.com/FlooferLand/wsearch/issues/new?template=edit-an-artwork--metadata-info--image--etc-.md" %}
 	{% let credits = metadata.credits %}
-	<h2>Maintainers</h2>
+	<h2>Maintainers <a class="edit-button" href="{{ edit_link }}">(Edit)</a></h2>
 	<ol>
 		{% for maintainer in credits.maintainers %}
 			<pre class="username">{{ maintainer }}</pre>
@@ -43,7 +44,7 @@
 	</ol>
 
 	{% if let Some(artists) = credits.artists %}
-		<h2>Artists</h2>
+		<h2>Artists <a class="edit-button" href="{{ edit_link }}">(Edit)</a></h2>
 		<ol>
 			{% for artist in artists %}
 				{% if artist.starts_with("#") %}
