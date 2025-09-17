@@ -34,7 +34,7 @@ impl OverlayPro {
 			),
 			offset_x: 0,
 			offset_y: 0,
-			opacity: 1.0
+			opacity: 0.5
 		}
 	}
 }
