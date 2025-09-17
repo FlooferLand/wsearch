@@ -99,7 +99,8 @@
 		</div>
 
 		<footer>
-			<p>Search engine made by FlooferLand!</p>
+			<p>Search engine made by <span class="selectable">FlooferLand</span>!</p>
+			<p><a href="https://flooferland.com">Back to flooferland.com</a></p>
 		</footer>
     </body>
 </html>

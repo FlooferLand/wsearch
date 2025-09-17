@@ -1,7 +1,7 @@
 {% extends "base.askama" %}
 
 {% block body %}
-	<p>Searched for '<span class="search-term"></span>'..</p>
+	<p>Searched for '<span class="selectable search-term"></span>'..</p>
 
 	<div class="panel">
         <ol id="search-results"></ol>
