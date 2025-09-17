@@ -1,0 +1,18 @@
+{
+    "name": "Wsearch Arad",
+    "credits": {
+        "maintainers": ["FlooferLand (RO) #5674026"],
+        "artists": ["FlooferLand (RO)#5674026"]
+    },
+    "region": { "country": "ro", "state": "Arad" },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.183299275291326&lng=21.186298496777322&zoom=16.68309226459725",
+        "top_left": [526, 3096]
+    },
+    "image": {
+        "tile": [1144, 727],
+        "coords": [526, 96],
+        "png": "wsearch_arad.png"
+    },
+    "tags": ["wsearch", "logo"]
+}
