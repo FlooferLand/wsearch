@@ -35,6 +35,12 @@ footer {
 	}
 }
 
+details {
+	padding: 0.8rem;
+	background-color: color-mix(in srgb, light-dark(white, black) 15%, transparent);
+	border: 2pt solid #fff1;
+}
+
 #page-body {
     margin: 0.8rem;
     padding: 0;
@@ -48,7 +54,7 @@ footer {
 
 .panel {
 	padding: 0.5rem;
-	background-color: color-mix(in srgb, light-dark(white, black) 30%, transparent);
+	background-color: color-mix(in srgb, light-dark(white, black) 20%, transparent);
 	border: 2pt solid #fff1;
 }
 
