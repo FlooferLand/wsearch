@@ -30,8 +30,12 @@
 			{%- endfor -%}
 		</ol>
 		<div class="panel">
-			<p>If you'd like to add a new piece of art</p>
-			<p>Feel free to do so <a href="{{ crate::ADD_NEW_ARTWORK_URL }}">here!</a></p>
+			<p>
+				If you'd like to add a new piece of art,
+				feel free to do so <a href="{{ crate::ADD_NEW_ARTWORK_URL }}">here!</a>
+			</p>
+			<p>Any art is accepted as long as it isn't rude or breaks wplace rules</p>
+			<p>You can submit an artwork even if you aren't the original artist, just try to credit them.</p>
 		</div>
 	</details>
 
