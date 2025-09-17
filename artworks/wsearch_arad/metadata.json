@@ -6,12 +6,12 @@
     },
     "region": { "country": "ro", "state": "Arad" },
     "coords": {
-        "link": "https://wplace.live/?lat=46.183299275291326&lng=21.186298496777322&zoom=16.68309226459725",
-        "top_left": [526, 3096]
+        "link": "https://wplace.live/?lat=46.16991034083168&lng=21.199482090527326&zoom=15.559585739289494",
+        "top_left": [601, 3206]
     },
     "image": {
         "tile": [1144, 727],
-        "coords": [526, 96],
+        "coords": [601, 206],
         "png": "wsearch_arad.png"
     },
     "tags": ["wsearch", "logo"]
