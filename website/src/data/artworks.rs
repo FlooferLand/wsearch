@@ -17,12 +17,13 @@ pub struct ArtworkMetadata {
 	pub license: Option<String>,
 	pub region: GeographicalRegion,
 	pub tags: HashSet<Tag>,
-	#[serde(default)] pub unfinished: bool
+	#[serde(default)] pub unfinished: bool,
+	#[serde(default)] pub discontinued: bool
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
 pub struct ArtworkCredits {
-	pub maintainers: Vec<String>,
+	pub maintainers: Option<Vec<String>>,
 	pub artists: Option<Vec<String>>
 }
 

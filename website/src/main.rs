@@ -53,15 +53,20 @@ fn make_overlay_data(build_dir: &PathBuf, data: &Data) {
 fn make_search_data(build_dir: &PathBuf, data: &Data) {
 	#[derive(Serialize, Deserialize)]
 	struct SearchData {
-		pub posts: Vec<(String, String)>,
+		pub posts: Vec<Option<(String, String)>>,
 		pub names: HashMap<String, usize>,
 		pub tags: HashMap<String, Vec<usize>>
 	}
 
 	let mut search_map = SearchData { posts: Vec::new(), names: HashMap::new(), tags: HashMap::new() };
 	
+	// TODO: Properly remove discontinued drawings
 	for (i, artwork) in data.artworks.iter().enumerate() {
-		search_map.posts.insert(i, (artwork.slug.clone(), artwork.metadata.name.clone()));
+		let post = match artwork.metadata.discontinued {
+			true => None,
+			false => Some((artwork.slug.clone(), artwork.metadata.name.clone())),
+		};
+		search_map.posts.insert(i, post);
 		search_map.names.insert(artwork.metadata.name.to_lowercase(), i);
 		for tag in &artwork.metadata.tags {
 			let tag = tag.to_string();

@@ -1,7 +1,7 @@
 {
     "name": "Random logo area",
     "credits": {
-        "maintainers": ["FlooferLand (RO) #5674026 (@flooferland)"]
+        "artists": ["Bazinga #9056509"]
     },
     "region": { "country": "ro", "state": "Arad" },
     "coords": {
@@ -13,5 +13,6 @@
         "coords": [465, 128],
         "png": "random_logo_area.png"
     },
-    "tags": []
+    "tags": [],
+    "discontinued": true
 }

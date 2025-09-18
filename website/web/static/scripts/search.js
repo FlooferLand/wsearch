@@ -6,7 +6,7 @@ const searchTerms = document.querySelectorAll("span.search-term");
 
 /**
  * @typedef {Object} SearchJson
- * @property {string[][]} posts
+ * @property {(string[] | null)[]} posts
  * @property {Object.<string, number>} names
  * @property {Object.<string, number[]>} tags
 */
@@ -55,7 +55,9 @@ function updateResults(json) {
     let resultsHtml = "";
     for (let i of found) {
         const post = json.posts[i];
-        resultsHtml += `<li><a href="/art/${post[0]}">${post[1]}</a></li>`;
+        if (post != null) {
+            resultsHtml += `<li><a href="/art/${post[0]}">${post[1]}</a></li>`;
+        }
     }
     if (found.size == 0) {
         resultsHtml += `<p>No results found.</p>`;

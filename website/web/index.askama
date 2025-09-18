@@ -21,7 +21,14 @@
 		<ul>
 			{%- for artwork in artworks %}
 				<li>
-					<a href="/art/{{ artwork.slug }}" title="{{ artwork.metadata.name }} ({{ artwork.metadata.region.to_string() }})">
+					{% let class %}
+					{% if artwork.metadata.discontinued %}
+						{% set class = "remark" %}
+					{% else %}
+						{% set class = "" %}
+					{% endif %}
+
+					<a href="/art/{{ artwork.slug }}" title="{{ artwork.metadata.name }} ({{ artwork.metadata.region.to_string() }})" class="{{ class }}">
 						{%- let code = artwork.metadata.region.country.code() %}
 						{% if artwork.metadata.unfinished %}
 							<span>🚧</span>

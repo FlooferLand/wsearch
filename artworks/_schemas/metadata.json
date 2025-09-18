@@ -9,6 +9,10 @@
     "credits": {
       "$ref": "#/$defs/ArtworkCredits"
     },
+    "discontinued": {
+      "type": "boolean",
+      "default": false
+    },
     "image": {
       "$ref": "#/$defs/ArtworkImage"
     },
@@ -59,15 +63,15 @@
           }
         },
         "maintainers": {
-          "type": "array",
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "type": "string"
           }
         }
-      },
-      "required": [
-        "maintainers"
-      ]
+      }
     },
     "ArtworkGlobalCoords": {
       "type": "object",

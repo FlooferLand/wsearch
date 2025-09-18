@@ -20,6 +20,19 @@
 	{#- Name #}
 	<h1>{{ metadata.name }}</h1>
 
+	{#- Discontinued notice #}
+	{% if artwork.metadata.discontinued %}
+		<br/>
+		<div class="unfinished-panel">
+			<p>This drawing is no longer on wplace.</p>
+			<p>This is usually due to the drawing's authors griefing other people's drawings and people taking action to remove their drawing as a result.</p>
+			<p>I don't condone any griefing of art, even if its a griefer's artwork.
+				However the people have spoken, and I'm only one person so I can't be expected to repair these,
+				especially when other griefing attempts are being made that I have to focus on.</p>
+		</div>
+	{% endif %}
+
+	{#- W.I.P notice #}
 	{% if artwork.metadata.unfinished %}
 		<br/>
 		<div class="unfinished-panel">
@@ -55,12 +68,18 @@
 	<br />
 
 	{#- Maintainers #}
-	<h2>Maintainers <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
-	<ol>
-		{% for maintainer in credits.maintainers %}
-			<pre class="username">{{ maintainer }}</pre>
-		{% endfor %}
-	</ol>
+	{% if let Some(maintainers) = credits.maintainers %}
+		<h2>Maintainers <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
+		<ol>
+			{% for maintainer in maintainers %}
+				<pre class="username">{{ maintainer }}</pre>
+			{% endfor %}
+		</ol>
+	{% else %}
+		<h2>Maintainers</h2>
+		<pre>No one</pre>
+		<p style="opacity: 50%"><i>If you know someone who maintains this drawing please let me know by editing this section and make sure to provide receipts!</i></p>
+	{% endif %}
 
 	{#- Artists #}
 	{% if let Some(artists) = credits.artists %}
@@ -77,7 +96,7 @@
 	{% else %}
 		<h2>Artist</h2>
 		<pre>Unknown</pre>
-		<p style="opacity: 50%"><i>If you know the artist please let me know and provide receipts!</i></p>
+		<p style="opacity: 50%"><i>If you know the artist of this drawing please let me know by editing this section and make sure to provide receipts!</i></p>
 	{% endif %}
 
 	{#- Other #}
