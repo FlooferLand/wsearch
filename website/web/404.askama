@@ -1,6 +1,16 @@
 {% extends "base.askama" %}
 
+{% block head %}
+	<style>
+		.notfound-text {
+			color: darkred;
+			text-shadow: 2px 2px 6px black;
+		}
+	</style>
+{% endblock %}
+
 {% block body %}
+	<h1 class="notfound-text">404, foundn't</h1>
 	<p>Oh no, that URL is borked!</p>
 	<p>If this url was previously an artwork or something else important,
 		please <a href="https://github.com/FlooferLand/wsearch/issues/new/choose">contact me on GitHub.</a></p>

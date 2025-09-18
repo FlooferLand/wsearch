@@ -93,6 +93,8 @@
 	{% let overlay = artwork.overlay %}
 	{% if let Ok(overlay) = serde_json::to_string_pretty(overlay) %}
 		<h2>Overlay Pro</h2>
+		<p><small>Overlay Pro allows you to put art onto the wplace canvas, allowing you to manually trace over it.</small></p>
+		<p>Read more about it and/or download it <a href="/overlay-pro">here</a>!</p>
 		<button id="copy-overlay-pro">Copy to clipboard</button>
 		<pre id="overlay-pro-code" class="codeblock">{{ overlay }}</pre>
 		<script defer>

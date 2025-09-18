@@ -1,0 +1,22 @@
+{% extends "base.askama" %}
+
+{% block body %}
+	<h2>Overlay Pro</h2>
+
+	<div class="panel">
+		<p>An extremely valuable user-script for fighting against griefers.</p>
+		<p>It also does not break wplace ToS as it cannot place pixels or do anything on its own.</p>
+	</div>
+
+	<h3>Downloads</h3>
+	<div class="panel">
+		<p>
+			I didn't make the script, but you can download it
+			<a href="https://greasyfork.org/en/scripts/545041-wplace-overlay-pro">here</a>.
+		</p>
+		<p>
+			You also need <a href="https://www.tampermonkey.net">Tampermonkey</a> in order to run the script
+		</p>
+	</div>
+	
+{% endblock %}
