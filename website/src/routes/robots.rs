@@ -1,7 +1,6 @@
 use askama::{DynTemplate, Template};
 use generator::routes::Route;
 use crate::{data::Artwork, Data};
-use chrono::{DateTime, Utc};
 
 #[derive(Template)]
 #[template(path = "robots.txt")]

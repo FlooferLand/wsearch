@@ -1,5 +1,8 @@
 {% extends "base.askama" %}
 
+{% macro edit_button() %}
+	<a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a>
+{% endmacro %}
 
 {%- block metadata %}
 	{% call page_metadata(
@@ -69,21 +72,21 @@
 
 	{#- Maintainers #}
 	{% if let Some(maintainers) = credits.maintainers %}
-		<h2>Maintainers <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
+		<h2>Maintainers {%- call edit_button() -%}</h2>
 		<ol>
 			{% for maintainer in maintainers %}
 				<pre class="username">{{ maintainer }}</pre>
 			{% endfor %}
 		</ol>
 	{% else %}
-		<h2>Maintainers</h2>
+		<h2>Maintainers {%- call edit_button() -%}</h2>
 		<pre>No one</pre>
 		<p style="opacity: 50%"><i>If you know someone who maintains this drawing please let me know by editing this section and make sure to provide receipts!</i></p>
 	{% endif %}
 
 	{#- Artists #}
 	{% if let Some(artists) = credits.artists %}
-		<h2>Artists <a class="edit-button" href="{{ crate::EDIT_ARTWORK_URL }}">(Edit)</a></h2>
+		<h2>Artists {%- call edit_button() -%}</h2>
 		<ol>
 			{% for artist in artists %}
 				{% if artist.starts_with("#") %}
@@ -94,7 +97,7 @@
 			{% endfor %}
 		</ol>
 	{% else %}
-		<h2>Artist</h2>
+		<h2>Artist {%- call edit_button() -%}</h2>
 		<pre>Unknown</pre>
 		<p style="opacity: 50%"><i>If you know the artist of this drawing please let me know by editing this section and make sure to provide receipts!</i></p>
 	{% endif %}
