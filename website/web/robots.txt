@@ -1,3 +1,9 @@
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://wsearch.flooferland.com/sitemap.xml
+
+# Disallow AI slop bots
 User-agent: AddSearchBot
 User-agent: AI2Bot
 User-agent: Ai2Bot-Dolma
@@ -93,4 +99,4 @@ User-agent: YaK
 User-agent: YandexAdditional
 User-agent: YandexAdditionalBot
 User-agent: YouBot
-Disallow: /
+Disallow: /art
