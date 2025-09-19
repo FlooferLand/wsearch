@@ -170,6 +170,7 @@ fn process_and_copy<Data>(src: &Path, dst: &Path, generator: &Generator<Data>) -
 				let code = std::fs::read_to_string(src)?;
 				let scss = {
 					let options = grass::Options::default()
+						.style(grass::OutputStyle::Compressed)
 						.load_path(&generator.styles_dir);
 					grass::from_string(code, &options).unwrap()
 				};
@@ -255,6 +256,20 @@ fn render_route<'a>(
 		}
 		cleaned_path
 	};
+
+	// Post-processing based on extension
+	let ext = cleaned_route.extension().unwrap().to_string_lossy().to_string();
+	match ext.as_str() {
+		"html" => {
+			let minify_cfg = minify_html::Cfg {
+				minify_css: true,
+				.. Default::default()
+			};
+			let out = minify_html::minify(rendered.as_bytes(), &minify_cfg);
+			rendered = String::from_utf8(out).expect("Invalid UTF-8");
+		}
+		_ => {}
+	}
 	
 	// Writing the file
 	let out_path = PathBuf::from(format!("{}{}", build_dir.display(), cleaned_route.display()));
