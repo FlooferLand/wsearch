@@ -1,0 +1,21 @@
+{
+    "name": "Dorothera (Night Light Hounds)",
+    "credits": {
+        "artists": [
+            "coolhex597",
+            "LuminousFrost",
+            "BlackoutBunny"
+        ]
+    },
+    "region": { "country": "", "state": "" },
+    "coords": {
+        "link": "",
+        "top_left": [1165, 2583]
+    },
+    "image": {
+        "tile": [483, 781],
+        "coords": [40, 542],
+        "png": "dorothera.png"
+    },
+    "tags": ["anime", "size:large"]
+}
