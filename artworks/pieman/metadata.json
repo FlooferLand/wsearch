@@ -1,0 +1,21 @@
+{
+    "name": "Pie Man",
+    "credits": {
+        "maintainers": [
+            "qubaw #10637535 (qubaw)",
+            "FlooferLand (RO) #5674026"
+        ],
+        "artists": ["YoungNapkin #1240229"]
+    },
+    "region": { "country": "ro", "state": "Arad" },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.24569734554309&lng=21.29862271552733&zoom=15.566757946809165",
+        "top_left": [1165, 2583]
+    },
+    "image": {
+        "tile": [1145, 726],
+        "coords": [165, 583],
+        "png": "pieman.png"
+    },
+    "tags": ["pie", "viking", "medieval"]
+}
