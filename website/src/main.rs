@@ -18,7 +18,7 @@ fn main() {
 	Generator::new()
 		.route::<IndexRoute>("/", "Home")
 		.route::<SearchRoute>("/search", "Search")
-		.route::<NotFoundRoute>("/404", "Page not found")
+		.route::<NotFoundRoute>("/404.html", "Page not found")
 		.route::<OverlayProRoute>("/overlay-pro", "Overlay Pro")
 		.route::<SitemapRoute>("/sitemap.xml", "Sitemap")
 		.route::<RobotsRoute>("/robots.txt", "Robots")
