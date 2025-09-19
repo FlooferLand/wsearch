@@ -5,7 +5,7 @@ mod types;
 
 use std::{collections::HashMap, path::PathBuf};
 
-use crate::{data::{artworks::load_artworks, tags::load_tags}, routes::{arts::ArtsRoute, not_found::NotFoundRoute, overlay_pro::OverlayProRoute, search::SearchRoute, sitemap::SitemapRoute}};
+use crate::{data::{artworks::load_artworks, tags::load_tags}, routes::{arts::ArtsRoute, not_found::NotFoundRoute, overlay_pro::OverlayProRoute, robots::RobotsRoute, search::SearchRoute, sitemap::SitemapRoute}};
 use crate::data::Data;
 use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
@@ -21,6 +21,7 @@ fn main() {
 		.route::<NotFoundRoute>("/404", "Page not found")
 		.route::<OverlayProRoute>("/overlay-pro", "Overlay Pro")
 		.route::<SitemapRoute>("/sitemap.xml", "Sitemap")
+		.route::<RobotsRoute>("/robots.txt", "Robots")
 		.proc_route::<ArtsRoute>("/art", "Home")
 		.insert_data(load_data())
 		.mount("$static", "/static")
