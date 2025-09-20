@@ -30,10 +30,12 @@
 
 					<a href="/art/{{ artwork.slug }}" title="{{ artwork.metadata.name }} ({{ artwork.metadata.region.to_string() }})" class="{{ class }}">
 						{%- let code = artwork.metadata.region.country.code() %}
-						{% if artwork.metadata.unfinished %}
+						{% if artwork.metadata.unfinished || artwork.missing_data.len() > 0 %}
 							<span>🚧</span>
 						{% endif %}
-						<img src="https://flagcdn.com/w320/{{ code }}.png" alt="({{ code }})" width="18px" />
+						{% if artwork.missing_data.len() == 0 %}
+							<img src="https://flagcdn.com/w320/{{ code }}.png" alt="({{ code }})" width="18px" />
+						{% endif %}
 						{{ artwork.metadata.name }}
 					</a>
 				</li>
