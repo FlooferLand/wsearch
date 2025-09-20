@@ -17,7 +17,7 @@
 	<br/>
 
 	<details open>
-		<summary>Indexed</summary>
+		<summary>Indexed <small>({{ artworks.len() }} drawings)</small></summary>
 		<ul>
 			{%- for artwork in artworks %}
 				<li>
@@ -52,7 +52,7 @@
 	</details>
 
 	<details>
-		<summary>All tags</summary>
+		<summary>All tags <small>({{ all_tags.len() }} tags)</small></summary>
 		<ul>
 			{%- for tag in all_tags %}
 				<li>
