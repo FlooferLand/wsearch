@@ -11,7 +11,7 @@ use crate::routes::index::IndexRoute;
 use generator::generator::Generator;
 use serde::{Deserialize, Serialize};
 
-const ADD_NEW_ARTWORK_URL: &str = "https://github.com/FlooferLand/wsearch/issues/new?template=index-a-new-artwork.md";
+const ADD_NEW_ARTWORK_URL: &str = "https://forms.gle/TrDTajj9KQ2V2FJ48";
 const EDIT_ARTWORK_URL:    &str = "https://github.com/FlooferLand/wsearch/issues/new?template=edit-an-artwork--metadata-info--image--etc-.md";
 
 fn main() {
