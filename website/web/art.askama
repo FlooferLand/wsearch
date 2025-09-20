@@ -42,6 +42,16 @@
 			<p>This drawing is under construction <span>🚧</span></p>
 		</div>
 	{% endif %}
+
+	{#- Missing data notice #}
+	{% if artwork.missing_data.len() > 0 %}
+		<br/>
+		<div class="unfinished-panel">
+			<p>This drawing is missing data and is not indexed properly. Some links/things might be broken.</p>
+			<p>Missing: <span class="inline-code">{{ artwork.missing_data.join(", ") }}</span></p>
+			<p>Please <a href="{{ crate::EDIT_ARTWORK_URL }}">submit an edit request</a> to add in the missing data.</p>
+		</div>
+	{% endif %}
 	
 	{#- Preview images -#}
 	<div id="preview-container">

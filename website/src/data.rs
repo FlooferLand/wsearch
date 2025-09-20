@@ -18,5 +18,6 @@ pub struct Data {
 pub struct Artwork {
 	pub slug: String,
 	pub metadata: ArtworkMetadata,
-	pub overlay: OverlayPro
+	pub overlay: OverlayPro,
+	pub missing_data: Vec<String>
 }

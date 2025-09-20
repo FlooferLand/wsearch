@@ -87,11 +87,23 @@ pub fn load_artworks() -> Vec<Artwork> {
 			continue;  // Skipping if there is no metadata file since its required
 		}
 
+		// Data completion status
+		let mut missing_data = Vec::with_capacity(3);
+		if metadata.coords.link.is_empty() {
+			missing_data.push("coords.link".to_string());
+		}
+		if metadata.region.country.to_string().is_empty() {
+			missing_data.push("region.country".to_string());
+		}
+		if metadata.region.state.is_empty() {
+			missing_data.push("region.state".to_string());
+		}
+
 		// Generating the overlay
 		let overlay = OverlayPro::new(&slug, &metadata);
 		
 		// Adding the new artwork
-		artworks.push(Artwork { slug, metadata, overlay });
+		artworks.push(Artwork { slug, metadata, overlay, missing_data });
 	}
 	artworks
 }
