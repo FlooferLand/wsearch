@@ -12,7 +12,7 @@ use generator::generator::Generator;
 use serde::{Deserialize, Serialize};
 
 const ADD_NEW_ARTWORK_URL: &str = "https://forms.gle/TrDTajj9KQ2V2FJ48";
-const EDIT_ARTWORK_URL:    &str = "https://github.com/FlooferLand/wsearch/issues/new?template=edit-an-artwork--metadata-info--image--etc-.md";
+const EDIT_ARTWORK_URL:    &str = "https://forms.gle/s1BzTM9AnPgTBYVPA";
 
 fn main() {
 	Generator::new()
