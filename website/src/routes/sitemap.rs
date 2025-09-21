@@ -20,7 +20,7 @@ impl Route<Data> for SitemapRoute {
 	fn build<'a>(&self, data: &'a Data) -> Result<Box<dyn DynTemplate + 'a>, String> {
 		let built = SitemapTemplate {
 			artworks: &data.artworks,
-			last_updated: DateTime::from_timestamp(1758239710, 0).unwrap()
+			last_updated: DateTime::from_timestamp(1758477329, 0).unwrap()
 		};
 		Ok(Box::new(built))
 	}
