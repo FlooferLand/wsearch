@@ -1,4 +1,4 @@
-{%- macro page_metadata(title = "wsearch - search the world", description = "a search engine for wplace", image = "") %}
+{%- macro page_metadata(title = "wsearch - the wplace search engine", description = "a search engine for wplace.live", image = "") %}
 	<meta property="twitter:title" content="{{ title }}">
 	<meta property="og:title" content="{{ title }}">
 	<meta name="title" content="{{ title }}">
