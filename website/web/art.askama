@@ -20,6 +20,11 @@
 	{% let metadata = artwork.metadata %}
 	{% let credits = metadata.credits %}
 
+	{# Hidden field for Google search #}
+	<p style="display: none">
+		An artwork indexed by wsearch, a search engine for wplace
+	</p>
+
 	{#- Name #}
 	<h1>{{ metadata.name }}</h1>
 

@@ -3,6 +3,7 @@
 	<meta property="og:title" content="{{ title }}">
 	<meta name="title" content="{{ title }}">
 	<meta property="twitter:description" content="{{ description }}">
+	<meta property="description" content="{{ description }}">
 	<meta name="description" content="{{ description }}">
 	<meta property="og:description" content="{{ description }}">
 	{% if image.len() > 0 %}
@@ -39,6 +40,7 @@
 			"@context": "https://schema.org/",
 			"@type": "WebSite",
 			"name": "wsearch",
+			"abstract": "A search engine for wplace.live",
 			"url": "https://wsearch.flooferland.com",
 			"potentialAction": {
 				"@type": "SearchAction",
