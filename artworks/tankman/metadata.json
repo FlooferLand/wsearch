@@ -1,0 +1,18 @@
+{
+    "name": "Tankman from Newgrounds",
+    "credits": {
+        "maintainers": ["SKELL #3273081 (baller_dx)"],
+        "artists": ["SKELL #3273081 (baller_dx)"]
+    },
+    "region": { "country": "ro", "state": "Arad" },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.26648094749022&lng=21.249755528027343&zoom=15.856642076060632",
+        "top_left": [887, 2412]
+    },
+    "image": {
+        "tile": [1144, 726],
+        "coords": [887, 412],
+        "png": "tankman.png"
+    },
+    "tags": ["tankman", "newgrounds"]
+}
