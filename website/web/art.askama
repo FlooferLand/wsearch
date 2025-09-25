@@ -58,11 +58,11 @@
 		</div>
 	{% endif %}
 	
-	{#- Incomplete art (wsearch limitation) notice #}
+	{#- Broken art (wsearch limitation) notice #}
 	<div id="wsearch-tile-limit-notice" style="display: none">
 		<br/>
 		<div class="unfinished-panel">
-			<p>This artwork may be missing some parts due to a limitation with how search works right now.</p>
+			<p>This artwork may be missing some parts due to a limitation with how search works right now, as I'm only a singular developer working on this in my free time.</p>
 			<p>The image data is still stored properly, but the image previews here might be wacky/wrong</p>
 		</div>
 	</div>

@@ -48,9 +48,11 @@ function fetchRemoteImage() {
         clippedImage.src = clippedCtx.canvas.toDataURL();
 
         // Limitation check
-        /*limitationNotice.style.display = (liveImage.width != localImage.width || liveImage.height != localImage.height)
+        const maxWidth = relCoords.x + localImage.width;
+        const maxHeight = relCoords.y + localImage.height;
+        limitationNotice.style.display = (maxWidth > 1000 || maxHeight > 1000)
             ? "block"
-            : "none";*/
+            : "none";
     };
     wplaceImage.src = proxied(tileUrl);
 }
