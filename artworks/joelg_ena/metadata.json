@@ -1,0 +1,18 @@
+{
+    "name": "Head of ENA (JoelG)",
+    "credits": {
+        "maintainers": ["SKELL #3273081 (baller_dx)"],
+        "artists": ["SKELL #3273081 (baller_dx)"]
+    },
+    "region": { "country": "ro", "state": "Arad" },
+    "coords": {
+        "link": "https://wplace.live/?lat=46.260161621312044&lng=21.27014615302733&zoom=15.839083880213146",
+        "top_left": [1003, 2464]
+    },
+    "image": {
+        "tile": [1145, 726],
+        "coords": [3, 464],
+        "png": "ena.png"
+    },
+    "tags": ["ena", "joelg", "newgrounds"]
+}
