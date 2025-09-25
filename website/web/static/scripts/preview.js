@@ -1,3 +1,6 @@
+/** @type {HTMLDivElement} */
+const limitationNotice = document.getElementById("wsearch-tile-limit-notice");
+
 /** @type {HTMLImageElement} */
 const liveImage = document.getElementById("wplace-live-preview");
 
@@ -43,6 +46,11 @@ function fetchRemoteImage() {
         clippedCtx.drawImage(wplaceImage, relCoords.x, relCoords.y, targetSize.width, targetSize.height, 0, 0, targetSize.width, targetSize.height);
         clippedCtx.globalCompositeOperation = "source-over";
         clippedImage.src = clippedCtx.canvas.toDataURL();
+
+        // Limitation check
+        /*limitationNotice.style.display = (liveImage.width != localImage.width || liveImage.height != localImage.height)
+            ? "block"
+            : "none";*/
     };
     wplaceImage.src = proxied(tileUrl);
 }
